@@ -8,6 +8,7 @@ let projects = {};
 let activeProjectId = "default";
 let treeData = {};
 let isViewerMode = false;
+let isProjectLocked = false;
 
 async function loadProjectsFromServer() {
     try {
@@ -28,6 +29,7 @@ async function loadProjectsFromServer() {
         treeData = projects[activeProjectId].data;
         renderProjectsList();
         initChart();
+        checkProjectLock(activeProjectId);
     } catch (e) {
         console.error("Erro ao carregar projetos:", e);
     }
@@ -77,6 +79,25 @@ async function saveAll() {
     await saveProjectToServer(activeProjectId);
     localStorage.setItem('organograma_active_project', activeProjectId);
     renderProjectsList();
+}
+
+async function checkProjectLock(id) {
+    try {
+        const response = await fetch(`api.php?action=check_lock&id=${id}`);
+        const result = await response.json();
+        isProjectLocked = result.locked;
+        
+        const warning = document.getElementById("lock-warning");
+        if (isProjectLocked) {
+            if (warning) warning.style.display = "block";
+            document.getElementById("save-node").disabled = true;
+            document.getElementById("save-node").innerText = "Modo Leitura (Bloqueado)";
+        } else {
+            if (warning) warning.style.display = "none";
+            document.getElementById("save-node").disabled = false;
+            document.getElementById("save-node").innerText = "Salvar Alterações";
+        }
+    } catch (e) { console.error("Erro ao verificar trava:", e); }
 }
 
 // --- Configuration ---
@@ -231,6 +252,7 @@ async function switchProject(id) {
     treeData = projects[id].data;
     initChart();
     localStorage.setItem('organograma_active_project', id);
+    checkProjectLock(id);
 }
 
 function toggleViewerMode(viewer) {
@@ -272,7 +294,7 @@ function setupEventListeners() {
     document.getElementById("btn-return")?.addEventListener("click", () => toggleViewerMode(false));
 
     document.getElementById("save-node")?.addEventListener("click", async () => {
-        if (!selectedNode) return;
+        if (!selectedNode || isProjectLocked) return;
         const nodeData = {
             role: document.getElementById("edit-role").value,
             name: document.getElementById("edit-name").value,

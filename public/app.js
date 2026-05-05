@@ -8,6 +8,7 @@ let projects = {};
 let activeProjectId = "default";
 let treeData = {};
 let isViewerMode = false;
+let lockHeartbeat = null;
 
 async function loadProjectsFromServer() {
     try {
@@ -28,6 +29,7 @@ async function loadProjectsFromServer() {
         treeData = projects[activeProjectId].data;
         renderProjectsList();
         initChart();
+        startHeartbeat(activeProjectId);
     } catch (e) {
         console.error("Erro ao carregar projetos:", e);
     }
@@ -87,6 +89,32 @@ async function saveAll() {
     await saveProjectToServer(activeProjectId);
     localStorage.setItem('organograma_active_project', activeProjectId);
     renderProjectsList();
+}
+
+async function lockProject(id) {
+    try {
+        await fetch('api.php?action=lock_project', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id })
+        });
+    } catch (e) { console.error("Erro ao travar projeto:", e); }
+}
+
+async function unlockProject(id) {
+    try {
+        await fetch('api.php?action=unlock_project', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id })
+        });
+    } catch (e) { console.error("Erro ao destravar projeto:", e); }
+}
+
+function startHeartbeat(id) {
+    if (lockHeartbeat) clearInterval(lockHeartbeat);
+    lockProject(id);
+    lockHeartbeat = setInterval(() => lockProject(id), 60000); // 1 minuto
 }
 
 // --- Configuration ---
@@ -263,6 +291,7 @@ async function switchProject(id) {
     treeData = projects[id].data;
     initChart(); 
     localStorage.setItem('organograma_active_project', id);
+    startHeartbeat(id);
 }
 
 function toggleViewerMode(viewer) {
@@ -392,6 +421,10 @@ function setupEventListeners() {
         const body = document.body;
         const newTheme = body.getAttribute("data-theme") === "light" ? "dark" : "light";
         body.setAttribute("data-theme", newTheme); lucide.createIcons();
+    });
+
+    window.addEventListener("beforeunload", () => {
+        if (activeProjectId) unlockProject(activeProjectId);
     });
 }
 

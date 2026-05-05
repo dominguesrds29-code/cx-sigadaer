@@ -52,7 +52,7 @@
                 <button class="theme-toggle" id="theme-toggle">
                     <i data-lucide="moon"></i>
                 </button>
-                <span class="version-tag">v1.4.0</span>
+                <span class="version-tag">v1.5.0</span>
             </div>
         </aside>
 
@@ -88,6 +88,10 @@
                 <button class="close-panel"><i data-lucide="x"></i></button>
             </div>
             <div class="panel-body">
+                <div id="lock-warning" class="alert alert-warning" style="display: none; margin-bottom: 15px; padding: 10px; border-radius: 8px; background: rgba(255, 193, 7, 0.2); border: 1px solid #ffc107; color: #ffc107; font-size: 13px;">
+                    <i data-lucide="lock" style="width: 14px; height: 14px; vertical-align: middle;"></i>
+                    Administrador editando. Modo leitura ativado.
+                </div>
                 <div class="form-group">
                     <label for="edit-role">Função/Cargo (Negrito)</label>
                     <input type="text" id="edit-role" placeholder="Ex: COMANDO">

@@ -126,6 +126,45 @@ switch ($action) {
         }
         break;
 
+    case 'lock_project':
+        $data = json_decode(file_get_contents('php://input'), true);
+        if ($data && isset($data['id'])) {
+            $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $data['id']);
+            $lockDir = $dataDir . 'locks/';
+            if (!is_dir($lockDir)) mkdir($lockDir, 0777, true);
+            file_put_contents($lockDir . $id . '.lock', json_encode(['time' => time(), 'user' => 'Admin']));
+            echo json_encode(['status' => 'success']);
+        }
+        break;
+
+    case 'unlock_project':
+        $data = json_decode(file_get_contents('php://input'), true);
+        if ($data && isset($data['id'])) {
+            $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $data['id']);
+            $lockFile = $dataDir . 'locks/' . $id . '.lock';
+            if (file_exists($lockFile)) unlink($lockFile);
+            echo json_encode(['status' => 'success']);
+        }
+        break;
+
+    case 'check_lock':
+        $projectId = $_GET['id'] ?? '';
+        if ($projectId) {
+            $lockFile = $dataDir . 'locks/' . preg_replace('/[^a-zA-Z0-9_\-]/', '', $projectId) . '.lock';
+            if (file_exists($lockFile)) {
+                $lockData = json_decode(file_get_contents($lockFile), true);
+                // Expira em 2 minutos se não houver heartbeat
+                if (time() - $lockData['time'] < 120) {
+                    echo json_encode(['locked' => true, 'user' => $lockData['user']]);
+                    exit;
+                } else {
+                    unlink($lockFile);
+                }
+            }
+        }
+        echo json_encode(['locked' => false]);
+        break;
+
     default:
         http_response_code(405);
         echo json_encode(['error' => 'Action not allowed']);
