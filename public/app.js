@@ -30,6 +30,12 @@ async function loadProjectsFromServer() {
         renderProjectsList();
         initChart();
         startHeartbeat(activeProjectId);
+
+        // Exibe o controle de status para o projeto inicial
+        const statusControl = document.getElementById("project-status-control");
+        const selectStatus = document.getElementById("select-status");
+        if (statusControl) statusControl.style.display = "block";
+        if (selectStatus) selectStatus.value = projects[activeProjectId].status || "public";
     } catch (e) {
         console.error("Erro ao carregar projetos:", e);
     }
@@ -250,11 +256,13 @@ function renderProjectsList() {
     const list = document.getElementById("projects-list"); if (!list) return;
     list.innerHTML = "";
     Object.keys(projects).forEach(id => {
+        const status = projects[id].status || "public";
+        const statusIcons = { "private": "lock", "readonly": "eye", "public": "edit-2" };
         const item = document.createElement("div");
-        item.className = `project-item ${id === activeProjectId ? 'active' : ''}`;
+        item.className = `project-item ${id === activeProjectId ? 'active' : ''} status-${status}`;
         item.innerHTML = `
             <div class="project-info">
-                <i data-lucide="file-text"></i> 
+                <i data-lucide="${statusIcons[status] || 'file-text'}" class="status-icon"></i> 
                 <span>${projects[id].name}</span>
             </div>
             <button class="delete-project" title="Excluir projeto">
@@ -289,6 +297,13 @@ async function switchProject(id) {
     await saveAll(); 
     activeProjectId = id; 
     treeData = projects[id].data;
+    
+    // Mostra controle de status e sincroniza valor
+    const statusControl = document.getElementById("project-status-control");
+    const selectStatus = document.getElementById("select-status");
+    if (statusControl) statusControl.style.display = "block";
+    if (selectStatus) selectStatus.value = projects[id].status || "public";
+
     initChart(); 
     localStorage.setItem('organograma_active_project', id);
     startHeartbeat(id);
@@ -421,6 +436,12 @@ function setupEventListeners() {
         const body = document.body;
         const newTheme = body.getAttribute("data-theme") === "light" ? "dark" : "light";
         body.setAttribute("data-theme", newTheme); lucide.createIcons();
+    });
+
+    document.getElementById("select-status")?.addEventListener("change", (e) => {
+        if (!activeProjectId || !projects[activeProjectId]) return;
+        projects[activeProjectId].status = e.target.value;
+        saveAll();
     });
 
     window.addEventListener("beforeunload", () => {

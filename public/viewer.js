@@ -9,6 +9,7 @@ let activeProjectId = "default";
 let treeData = {};
 let isViewerMode = false;
 let isProjectLocked = false;
+let isProjectReadonly = false;
 
 async function loadProjectsFromServer() {
     try {
@@ -85,17 +86,31 @@ async function checkProjectLock(id) {
     try {
         const response = await fetch(`api.php?action=check_lock&id=${id}`);
         const result = await response.json();
+        const status = result.status || "public";
         isProjectLocked = result.locked;
+        isProjectReadonly = (status === "readonly");
         
         const warning = document.getElementById("lock-warning");
-        if (isProjectLocked) {
-            if (warning) warning.style.display = "block";
-            document.getElementById("save-node").disabled = true;
-            document.getElementById("save-node").innerText = "Modo Leitura (Bloqueado)";
+        const saveBtn = document.getElementById("save-node");
+
+        if (isProjectLocked || isProjectReadonly) {
+            if (warning) {
+                warning.style.display = "block";
+                warning.innerHTML = isProjectReadonly 
+                    ? '<i data-lucide="eye"></i> Este organograma está em modo de apenas leitura.'
+                    : '<i data-lucide="lock"></i> Administrador editando. Modo leitura ativado.';
+                if (window.lucide) lucide.createIcons();
+            }
+            if (saveBtn) {
+                saveBtn.disabled = true;
+                saveBtn.innerText = "Modo Leitura (Bloqueado)";
+            }
         } else {
             if (warning) warning.style.display = "none";
-            document.getElementById("save-node").disabled = false;
-            document.getElementById("save-node").innerText = "Salvar Alterações";
+            if (saveBtn) {
+                saveBtn.disabled = false;
+                saveBtn.innerText = "Salvar Alterações";
+            }
         }
     } catch (e) { console.error("Erro ao verificar trava:", e); }
 }
@@ -232,15 +247,23 @@ function renderProjectsList() {
     const list = document.getElementById("projects-list"); if (!list) return;
     list.innerHTML = "";
     Object.keys(projects).forEach(id => {
+        const status = projects[id].status || "public";
+        const statusIcons = { "private": "lock", "readonly": "eye", "public": "edit-2" };
         const item = document.createElement("div");
-        item.className = `project-item ${id === activeProjectId ? 'active' : ''}`;
+        item.className = `project-item ${id === activeProjectId ? 'active' : ''} status-${status}`;
         item.innerHTML = `
             <div class="project-info">
-                <i data-lucide="file-text"></i> 
+                <i data-lucide="${statusIcons[status] || 'file-text'}" class="status-icon"></i> 
                 <span>${projects[id].name}</span>
             </div>
         `;
-        item.onclick = () => { if (!isViewerMode) switchProject(id); };
+        item.onclick = () => { 
+            if (status === "private") {
+                alert("Este organograma é uma proposta privada e ainda não foi liberado para visualização.");
+                return;
+            }
+            if (!isViewerMode) switchProject(id); 
+        };
         list.appendChild(item);
     });
     if (window.lucide) lucide.createIcons();
@@ -294,7 +317,7 @@ function setupEventListeners() {
     document.getElementById("btn-return")?.addEventListener("click", () => toggleViewerMode(false));
 
     document.getElementById("save-node")?.addEventListener("click", async () => {
-        if (!selectedNode || isProjectLocked) return;
+        if (!selectedNode || isProjectLocked || isProjectReadonly) return;
         const nodeData = {
             role: document.getElementById("edit-role").value,
             name: document.getElementById("edit-name").value,

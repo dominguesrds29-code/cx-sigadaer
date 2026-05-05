@@ -149,20 +149,29 @@ switch ($action) {
 
     case 'check_lock':
         $projectId = $_GET['id'] ?? '';
+        $status = 'public';
         if ($projectId) {
-            $lockFile = $dataDir . 'locks/' . preg_replace('/[^a-zA-Z0-9_\-]/', '', $projectId) . '.lock';
+            $projectId = preg_replace('/[^a-zA-Z0-9_\-]/', '', $projectId);
+            $filename = $dataDir . $projectId . '.json';
+            
+            // Pega o status do projeto
+            if (file_exists($filename)) {
+                $projectData = json_decode(file_get_contents($filename), true);
+                $status = $projectData['status'] ?? 'public';
+            }
+
+            $lockFile = $dataDir . 'locks/' . $projectId . '.lock';
             if (file_exists($lockFile)) {
                 $lockData = json_decode(file_get_contents($lockFile), true);
-                // Expira em 2 minutos se não houver heartbeat
                 if (time() - $lockData['time'] < 120) {
-                    echo json_encode(['locked' => true, 'user' => $lockData['user']]);
+                    echo json_encode(['locked' => true, 'user' => $lockData['user'], 'status' => $status]);
                     exit;
                 } else {
                     unlink($lockFile);
                 }
             }
         }
-        echo json_encode(['locked' => false]);
+        echo json_encode(['locked' => false, 'status' => $status]);
         break;
 
     default:

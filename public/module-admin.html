@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organograma Premium | CX-Sigadaer</title>
+    <title>Módulo Admin | CX-Sigadaer</title>
     <meta name="description" content="Ferramenta profissional de organogramas com edição dinâmica e design moderno.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -21,7 +22,7 @@
         <aside class="sidebar">
             <div class="logo">
                 <img src="dtcea_sj_logo.png" alt="DTCEA-SJ" class="brasao-img">
-                <span>Caixas <br> SIGADAER</span>
+                <span>Módulo <br> Admin</span>
             </div>
 
 
@@ -40,6 +41,16 @@
                 </button>
             </nav>
 
+            <!-- Visibilidade do Projeto (Sempre Visível) -->
+            <div id="project-status-control" class="status-control" style="padding: 12px; margin-bottom: 20px; background: rgba(59, 130, 246, 0.1); border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.2);">
+                <div class="status-header" style="font-size: 10px; color: var(--accent-color); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800;">Status de Publicação</div>
+                <select id="select-status" class="status-select" style="width: 100%; background: var(--sidebar-bg); color: white; border: 1px solid var(--border-color); padding: 8px; border-radius: 8px; font-family: inherit; font-size: 12px; cursor: pointer;">
+                    <option value="private">🔒 Privado (Proposta)</option>
+                    <option value="readonly">👁️ Público (Leitura)</option>
+                    <option value="public">✏️ Público (Editar Nomes)</option>
+                </select>
+            </div>
+
             <!-- Projects List -->
             <div class="projects-container">
                 <div class="projects-header">PROJETOS</div>
@@ -52,7 +63,7 @@
                 <button class="theme-toggle" id="theme-toggle">
                     <i data-lucide="moon"></i>
                 </button>
-                <span class="version-tag">v1.5.0</span>
+                <span class="version-tag">v1.6.0</span>
             </div>
         </aside>
 

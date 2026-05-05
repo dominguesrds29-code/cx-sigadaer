@@ -207,6 +207,26 @@ nav {
     height: 16px;
 }
 
+/* Project Status Styles */
+.project-item.status-private {
+    opacity: 0.4;
+    filter: grayscale(0.8);
+}
+
+.viewer-mode .project-item.status-private {
+    cursor: not-allowed;
+    pointer-events: none;
+    user-select: none;
+}
+
+.project-item.status-readonly {
+    border-left: 3px solid #ffb000;
+}
+
+.status-icon {
+    opacity: 0.6;
+}
+
 .sidebar-footer {
     padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);
