@@ -30,13 +30,17 @@ async function loadProjectsFromServer() {
         treeData = projects[activeProjectId].data;
         renderProjectsList();
         initChart();
+        
+        // Inicia verificação periódica da trava (a cada 10 segundos)
         checkProjectLock(activeProjectId);
+        setInterval(() => checkProjectLock(activeProjectId), 10000);
     } catch (e) {
         console.error("Erro ao carregar projetos:", e);
     }
 }
 
 async function saveProjectToServer(id) {
+    if (isProjectLocked || isProjectReadonly) return; // Bloqueio preventivo
     const project = projects[id];
     if (!project) return;
     project.id = id;
@@ -55,6 +59,13 @@ async function saveProjectToServer(id) {
 }
 
 async function updateNodeOnServer(nodeId, nodeData) {
+    // Verifica o status do projeto antes de tentar gravar
+    await checkProjectLock(activeProjectId);
+
+    if (isProjectReadonly) {
+        alert("Este projeto está em modo de apenas leitura no momento.");
+        return;
+    }
     try {
         const response = await fetch('api.php?action=update_node', {
             method: 'POST',
@@ -93,24 +104,16 @@ async function checkProjectLock(id) {
         const warning = document.getElementById("lock-warning");
         const saveBtn = document.getElementById("save-node");
 
-        if (isProjectLocked || isProjectReadonly) {
+        if (isProjectReadonly) {
             if (warning) {
                 warning.style.display = "block";
-                warning.innerHTML = isProjectReadonly 
-                    ? '<i data-lucide="eye"></i> Este organograma está em modo de apenas leitura.'
-                    : '<i data-lucide="lock"></i> Administrador editando. Modo leitura ativado.';
-                if (window.lucide) lucide.createIcons();
+                warning.innerHTML = '<i data-lucide="eye"></i> Este organograma está em modo de apenas leitura (definido pelo Administrador).';
+                lucide.createIcons();
             }
-            if (saveBtn) {
-                saveBtn.disabled = true;
-                saveBtn.innerText = "Modo Leitura (Bloqueado)";
-            }
+            if (saveBtn) saveBtn.style.display = "none";
         } else {
             if (warning) warning.style.display = "none";
-            if (saveBtn) {
-                saveBtn.disabled = false;
-                saveBtn.innerText = "Salvar Alterações";
-            }
+            if (saveBtn) saveBtn.style.display = "flex";
         }
     } catch (e) { console.error("Erro ao verificar trava:", e); }
 }

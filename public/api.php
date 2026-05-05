@@ -2,18 +2,38 @@
 header('Content-Type: application/json');
 
 $dataDir = 'data/';
+if (!is_dir($dataDir)) mkdir($dataDir, 0777, true);
+if (!is_dir($dataDir . 'backups/')) mkdir($dataDir . 'backups/', 0777, true);
+
 $action = $_GET['action'] ?? '';
 
+// --- Funções Auxiliares ---
+function updateNodeInTree(&$node, $nodeId, $newData) {
+    if ($node['id'] === $nodeId) {
+        foreach ($newData as $key => $value) {
+            if ($key !== 'children' && $key !== 'id') {
+                $node[$key] = $value;
+            }
+        }
+        return true;
+    }
+    if (isset($node['children'])) {
+        foreach ($node['children'] as &$child) {
+            if (updateNodeInTree($child, $nodeId, $newData)) return true;
+        }
+    }
+    return false;
+}
+
+// --- Fluxo Principal ---
 switch ($action) {
     case 'list':
         $projects = [];
-        if (is_dir($dataDir)) {
-            $files = glob($dataDir . '*.json');
-            foreach ($files as $file) {
-                $id = basename($file, '.json');
-                $content = json_decode(file_get_contents($file), true);
-                $projects[$id] = $content;
-            }
+        $files = glob($dataDir . '*.json');
+        foreach ($files as $file) {
+            $id = basename($file, '.json');
+            $content = json_decode(file_get_contents($file), true);
+            if ($content) $projects[$id] = $content;
         }
         echo json_encode($projects);
         break;
@@ -24,154 +44,86 @@ switch ($action) {
             $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $data['id']);
             $filename = $dataDir . $id . '.json';
             
-            // 1. Garantir que a pasta de backups exista
-            $backupDir = $dataDir . 'backups/';
-            if (!is_dir($backupDir)) {
-                mkdir($backupDir, 0777, true);
-            }
-
-            // 2. Criar um backup com timestamp ANTES ou DURANTE o salvamento
-            // Usamos o formato Ymd_His para fácil ordenação alfabética
-            $timestamp = date('Ymd_His');
-            $backupFile = $backupDir . $id . '_' . $timestamp . '.json';
-            
-            $jsonData = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-            
-            // Salva a cópia de segurança
-            file_put_contents($backupFile, $jsonData);
-
-            // 3. Atualiza o arquivo principal
-            if (file_put_contents($filename, $jsonData)) {
-                echo json_encode([
-                    'status' => 'success', 
-                    'message' => 'Arquivo atualizado e backup criado.',
-                    'file' => $id . '.json',
-                    'backup' => basename($backupFile)
-                ]);
-            } else {
-                http_response_code(500);
-                echo json_encode(['error' => 'Erro ao gravar o arquivo principal. Verifique as permissões da pasta data/.']);
-            }
-        } else {
-            http_response_code(400);
-            echo json_encode(['error' => 'Dados inválidos para salvamento.']);
-        }
-        break;
-
-    case 'delete':
-        $data = json_decode(file_get_contents('php://input'), true);
-        if ($data && isset($data['id'])) {
-            $filename = $dataDir . preg_replace('/[^a-zA-Z0-9_\-]/', '', $data['id']) . '.json';
-            if (file_exists($filename)) {
-                unlink($filename);
+            // Bloqueio de arquivo para evitar conflito simultâneo
+            $fp = fopen($filename, "c+");
+            if (flock($fp, LOCK_EX)) {
+                $jsonData = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                ftruncate($fp, 0);
+                rewind($fp);
+                fwrite($fp, $jsonData);
+                fflush($fp);
+                flock($fp, LOCK_UN);
+                
+                // Backup
+                file_put_contents($dataDir . 'backups/' . $id . '_' . date('Ymd_His') . '.json', $jsonData);
                 echo json_encode(['status' => 'success']);
-            } else {
-                http_response_code(404);
-                echo json_encode(['error' => 'File not found']);
             }
+            fclose($fp);
         }
         break;
 
     case 'update_node':
         $data = json_decode(file_get_contents('php://input'), true);
-        if ($data && isset($data['projectId']) && isset($data['nodeId']) && isset($data['nodeData'])) {
+        if ($data && isset($data['projectId'], $data['nodeId'])) {
             $projectId = preg_replace('/[^a-zA-Z0-9_\-]/', '', $data['projectId']);
             $filename = $dataDir . $projectId . '.json';
             
             if (file_exists($filename)) {
-                $projectData = json_decode(file_get_contents($filename), true);
-                
-                // Função recursiva para atualizar o nó
-                function updateNodeInTree(&$node, $nodeId, $newData) {
-                    if ($node['id'] === $nodeId) {
-                        foreach ($newData as $key => $value) {
-                            if ($key !== 'children' && $key !== 'id') {
-                                $node[$key] = $value;
-                            }
-                        }
-                        return true;
-                    }
-                    if (isset($node['children'])) {
-                        foreach ($node['children'] as &$child) {
-                            if (updateNodeInTree($child, $nodeId, $newData)) return true;
-                        }
-                    }
-                    return false;
-                }
-
-                if (updateNodeInTree($projectData, $data['nodeId'], $data['nodeData'])) {
-                    $jsonData = json_encode($projectData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                $fp = fopen($filename, "r+");
+                if (flock($fp, LOCK_EX)) {
+                    $content = "";
+                    while (!feof($fp)) { $content .= fread($fp, 8192); }
+                    $projectData = json_decode($content, true);
                     
-                    // Backup antes de salvar
-                    $backupDir = $dataDir . 'backups/';
-                    if (!is_dir($backupDir)) mkdir($backupDir, 0777, true);
-                    $timestamp = date('Ymd_His');
-                    $backupFile = $backupDir . $projectId . '_nodeUpdate_' . $timestamp . '.json';
-                    file_put_contents($backupFile, $jsonData);
+                    if (updateNodeInTree($projectData['data'], $data['nodeId'], $data['nodeData'])) {
+                        // Verifica se o projeto está em readonly (apenas para usuários comuns)
+                        $status = $projectData['status'] ?? 'public';
+                        if ($status === 'readonly' && !isset($data['isAdmin'])) {
+                            flock($fp, LOCK_UN);
+                            fclose($fp);
+                            http_response_code(403);
+                            echo json_encode(['error' => 'Este organograma está em modo de apenas leitura.']);
+                            exit;
+                        }
 
-                    if (file_put_contents($filename, $jsonData)) {
-                        echo json_encode(['status' => 'success', 'message' => 'Nó atualizado individualmente.']);
-                    } else {
-                        http_response_code(500);
-                        echo json_encode(['error' => 'Erro ao salvar arquivo.']);
+                        $jsonData = json_encode($projectData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                        ftruncate($fp, 0);
+                        rewind($fp);
+                        fwrite($fp, $jsonData);
+                        fflush($fp);
+                        
+                        // Backup rápido
+                        file_put_contents($dataDir . 'backups/' . $projectId . '_node_' . date('His') . '.json', $jsonData);
                     }
-                } else {
-                    http_response_code(404);
-                    echo json_encode(['error' => 'Nó não encontrado na estrutura.']);
+                    flock($fp, LOCK_UN);
                 }
-            } else {
-                http_response_code(404);
-                echo json_encode(['error' => 'Projeto não encontrado.']);
+                fclose($fp);
+                echo json_encode(['status' => 'success']);
             }
-        }
-        break;
-
-    case 'lock_project':
-        $data = json_decode(file_get_contents('php://input'), true);
-        if ($data && isset($data['id'])) {
-            $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $data['id']);
-            $lockDir = $dataDir . 'locks/';
-            if (!is_dir($lockDir)) mkdir($lockDir, 0777, true);
-            file_put_contents($lockDir . $id . '.lock', json_encode(['time' => time(), 'user' => 'Admin']));
-            echo json_encode(['status' => 'success']);
-        }
-        break;
-
-    case 'unlock_project':
-        $data = json_decode(file_get_contents('php://input'), true);
-        if ($data && isset($data['id'])) {
-            $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $data['id']);
-            $lockFile = $dataDir . 'locks/' . $id . '.lock';
-            if (file_exists($lockFile)) unlink($lockFile);
-            echo json_encode(['status' => 'success']);
         }
         break;
 
     case 'check_lock':
-        $projectId = $_GET['id'] ?? '';
+        $id = $_GET['id'] ?? '';
         $status = 'public';
-        if ($projectId) {
-            $projectId = preg_replace('/[^a-zA-Z0-9_\-]/', '', $projectId);
-            $filename = $dataDir . $projectId . '.json';
-            
-            // Pega o status do projeto
-            if (file_exists($filename)) {
-                $projectData = json_decode(file_get_contents($filename), true);
-                $status = $projectData['status'] ?? 'public';
-            }
-
-            $lockFile = $dataDir . 'locks/' . $projectId . '.lock';
-            if (file_exists($lockFile)) {
-                $lockData = json_decode(file_get_contents($lockFile), true);
-                if (time() - $lockData['time'] < 120) {
-                    echo json_encode(['locked' => true, 'user' => $lockData['user'], 'status' => $status]);
-                    exit;
-                } else {
-                    unlink($lockFile);
-                }
+        if ($id) {
+            $fn = $dataDir . preg_replace('/[^a-zA-Z0-9_\-]/', '', $id) . '.json';
+            if (file_exists($fn)) {
+                $p = json_decode(file_get_contents($fn), true);
+                $status = $p['status'] ?? 'public';
             }
         }
+        // Agora o check_lock retorna apenas o status, sem trava automática
         echo json_encode(['locked' => false, 'status' => $status]);
+        break;
+
+    case 'delete':
+        $data = json_decode(file_get_contents('php://input'), true);
+        if (isset($data['id'])) {
+            $fn = $dataDir . preg_replace('/[^a-zA-Z0-9_\-]/', '', $data['id']) . '.json';
+            if (file_exists($fn)) unlink($fn);
+            echo json_encode(['status' => 'success']);
+        }
         break;
 
     default:
@@ -179,4 +131,3 @@ switch ($action) {
         echo json_encode(['error' => 'Action not allowed']);
         break;
 }
-?>

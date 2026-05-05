@@ -6,7 +6,7 @@
         "role": "COMANDO",
         "name": "CAP GODOY",
         "docs": "ASSIPACEA_SJ_CH\nDTCEASJ_CMT\nSCS_SJ_CH\nSIATO_SJ_CH",
-        "forwardTo": "",
+        "forwardTo": "Abri primeiro",
         "children": [
             {
                 "id": "node-1777481326137",
@@ -103,8 +103,8 @@
                 "id": "node-1777482106922",
                 "role": "COMUNICAÇÃO SOCIAL",
                 "name": "2S MAYSE",
-                "docs": "",
-                "forwardTo": "",
+                "docs": "Abri Segundoo",
+                "forwardTo": "silva",
                 "children": []
             },
             {
@@ -747,5 +747,6 @@
             }
         ]
     },
-    "status": "private"
+    "status": "public",
+    "lockToken": "tk-394vb31j5"
 }

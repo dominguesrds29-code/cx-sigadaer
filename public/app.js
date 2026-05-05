@@ -5,10 +5,9 @@
 
 // --- Persistence Layer ---
 let projects = {};
-let activeProjectId = "default";
+let activeProjectId = localStorage.getItem('organograma_active_project') || null;
 let treeData = {};
 let isViewerMode = false;
-let lockHeartbeat = null;
 
 async function loadProjectsFromServer() {
     try {
@@ -67,7 +66,8 @@ async function updateNodeOnServer(nodeId, nodeData) {
             body: JSON.stringify({
                 projectId: activeProjectId,
                 nodeId: nodeId,
-                nodeData: nodeData
+                nodeData: nodeData,
+                isAdmin: true // Informa que é o administrador gravando
             })
         });
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -95,32 +95,6 @@ async function saveAll() {
     await saveProjectToServer(activeProjectId);
     localStorage.setItem('organograma_active_project', activeProjectId);
     renderProjectsList();
-}
-
-async function lockProject(id) {
-    try {
-        await fetch('api.php?action=lock_project', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: id })
-        });
-    } catch (e) { console.error("Erro ao travar projeto:", e); }
-}
-
-async function unlockProject(id) {
-    try {
-        await fetch('api.php?action=unlock_project', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: id })
-        });
-    } catch (e) { console.error("Erro ao destravar projeto:", e); }
-}
-
-function startHeartbeat(id) {
-    if (lockHeartbeat) clearInterval(lockHeartbeat);
-    lockProject(id);
-    lockHeartbeat = setInterval(() => lockProject(id), 60000); // 1 minuto
 }
 
 // --- Configuration ---
@@ -306,7 +280,6 @@ async function switchProject(id) {
 
     initChart(); 
     localStorage.setItem('organograma_active_project', id);
-    startHeartbeat(id);
 }
 
 function toggleViewerMode(viewer) {
@@ -442,10 +415,6 @@ function setupEventListeners() {
         if (!activeProjectId || !projects[activeProjectId]) return;
         projects[activeProjectId].status = e.target.value;
         saveAll();
-    });
-
-    window.addEventListener("beforeunload", () => {
-        if (activeProjectId) unlockProject(activeProjectId);
     });
 }
 
