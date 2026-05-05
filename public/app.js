@@ -51,6 +51,25 @@ async function saveProjectToServer(id) {
     }
 }
 
+async function updateNodeOnServer(nodeId, nodeData) {
+    try {
+        const response = await fetch('api.php?action=update_node', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                projectId: activeProjectId,
+                nodeId: nodeId,
+                nodeData: nodeData
+            })
+        });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        console.log("Nó atualizado individualmente no servidor.");
+    } catch (e) {
+        console.error("Erro ao atualizar nó no servidor:", e);
+        alert("Erro ao salvar alterações da caixa no servidor.");
+    }
+}
+
 async function deleteProjectFromServer(id) {
     try {
         await fetch('api.php?action=delete', {
@@ -288,11 +307,19 @@ function setupEventListeners() {
 
     document.getElementById("save-node")?.addEventListener("click", async () => {
         if (!selectedNode) return;
-        selectedNode.data.role = document.getElementById("edit-role").value;
-        selectedNode.data.name = document.getElementById("edit-name").value;
-        selectedNode.data.docs = document.getElementById("edit-docs").value;
-        selectedNode.data.forwardTo = document.getElementById("edit-forward").value;
-        await saveAll(); 
+        const nodeData = {
+            role: document.getElementById("edit-role").value,
+            name: document.getElementById("edit-name").value,
+            docs: document.getElementById("edit-docs").value,
+            forwardTo: document.getElementById("edit-forward").value
+        };
+        
+        // Atualiza localmente
+        Object.assign(selectedNode.data, nodeData);
+        
+        // Salva apenas este nó no servidor
+        await updateNodeOnServer(selectedNode.data.id, nodeData);
+        
         update(selectedNode); 
         closeEditPanel();
     });

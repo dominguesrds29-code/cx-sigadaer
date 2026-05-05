@@ -72,6 +72,60 @@ switch ($action) {
         }
         break;
 
+    case 'update_node':
+        $data = json_decode(file_get_contents('php://input'), true);
+        if ($data && isset($data['projectId']) && isset($data['nodeId']) && isset($data['nodeData'])) {
+            $projectId = preg_replace('/[^a-zA-Z0-9_\-]/', '', $data['projectId']);
+            $filename = $dataDir . $projectId . '.json';
+            
+            if (file_exists($filename)) {
+                $projectData = json_decode(file_get_contents($filename), true);
+                
+                // Função recursiva para atualizar o nó
+                function updateNodeInTree(&$node, $nodeId, $newData) {
+                    if ($node['id'] === $nodeId) {
+                        foreach ($newData as $key => $value) {
+                            if ($key !== 'children' && $key !== 'id') {
+                                $node[$key] = $value;
+                            }
+                        }
+                        return true;
+                    }
+                    if (isset($node['children'])) {
+                        foreach ($node['children'] as &$child) {
+                            if (updateNodeInTree($child, $nodeId, $newData)) return true;
+                        }
+                    }
+                    return false;
+                }
+
+                if (updateNodeInTree($projectData, $data['nodeId'], $data['nodeData'])) {
+                    $jsonData = json_encode($projectData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                    
+                    // Backup antes de salvar
+                    $backupDir = $dataDir . 'backups/';
+                    if (!is_dir($backupDir)) mkdir($backupDir, 0777, true);
+                    $timestamp = date('Ymd_His');
+                    $backupFile = $backupDir . $projectId . '_nodeUpdate_' . $timestamp . '.json';
+                    file_put_contents($backupFile, $jsonData);
+
+                    if (file_put_contents($filename, $jsonData)) {
+                        echo json_encode(['status' => 'success', 'message' => 'Nó atualizado individualmente.']);
+                    } else {
+                        http_response_code(500);
+                        echo json_encode(['error' => 'Erro ao salvar arquivo.']);
+                    }
+                } else {
+                    http_response_code(404);
+                    echo json_encode(['error' => 'Nó não encontrado na estrutura.']);
+                }
+            } else {
+                http_response_code(404);
+                echo json_encode(['error' => 'Projeto não encontrado.']);
+            }
+        }
+        break;
+
     default:
         http_response_code(405);
         echo json_encode(['error' => 'Action not allowed']);
