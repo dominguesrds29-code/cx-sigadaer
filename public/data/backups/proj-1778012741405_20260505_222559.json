@@ -1,0 +1,13 @@
+{
+    "id": "proj-1778012741405",
+    "name": "Proposta",
+    "data": {
+        "id": "root",
+        "role": "DIRETORIA",
+        "name": "NOVO DIRETOR",
+        "docs": "",
+        "forwardTo": "",
+        "children": []
+    },
+    "status": "readonly"
+}
