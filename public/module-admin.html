@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organograma Premium | CX-Sigadaer</title>
+    <meta name="description" content="Ferramenta profissional de organogramas com edição dinâmica e design moderno.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="dtcea_sj_logo.png" alt="DTCEA-SJ" class="brasao-img">
+                <span>Caixas <br> SIGADAER</span>
+            </div>
+
+
+
+
+            <nav>
+                <button class="nav-btn active" title="Editar Organograma" id="btn-edit">
+                    <i data-lucide="edit-3"></i>
+                </button>
+                <button class="nav-btn" title="Visualização" id="btn-settings">
+                    <i data-lucide="eye"></i>
+                </button>
+
+                <button class="nav-btn" title="Exportar" id="btn-export">
+                    <i data-lucide="download"></i>
+                </button>
+            </nav>
+
+            <!-- Projects List -->
+            <div class="projects-container">
+                <div class="projects-header">PROJETOS</div>
+                <div id="projects-list" class="projects-list">
+                    <!-- Dinamicamente preenchido -->
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button class="theme-toggle" id="theme-toggle">
+                    <i data-lucide="moon"></i>
+                </button>
+                <span class="version-tag">v1.3.0</span>
+            </div>
+        </aside>
+
+        <!-- Main Canvas -->
+        <main class="canvas-container">
+            <div class="toolbar">
+                <div class="actions">
+                    <button class="btn btn-primary" id="add-root">
+                        <i data-lucide="plus"></i> Novo Organograma
+                    </button>
+                </div>
+            </div>
+
+
+            <div id="canvas"></div>
+
+            <!-- Controls (Zoom/Pan) -->
+            <div class="canvas-controls">
+                <button id="zoom-in"><i data-lucide="zoom-in"></i></button>
+                <button id="zoom-out"><i data-lucide="zoom-out"></i></button>
+                <button id="reset-view"><i data-lucide="maximize"></i></button>
+            </div>
+        </main>
+
+        <!-- Viewer Mode Return Button -->
+        <button class="return-btn" id="btn-return" title="Voltar ao Modo Edição">
+            <i data-lucide="arrow-left"></i>
+        </button>
+
+
+        <!-- Edit Modal / Sidebar -->
+        <div id="edit-panel" class="edit-panel">
+            <div class="panel-header">
+                <h3>Editar Elemento</h3>
+                <button class="close-panel"><i data-lucide="x"></i></button>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="edit-role">Função/Cargo (Negrito)</label>
+                    <input type="text" id="edit-role" placeholder="Ex: COMANDO">
+                </div>
+                <div class="form-group">
+                    <label for="edit-name">Nome da Pessoa</label>
+                    <input type="text" id="edit-name" placeholder="Ex: CAP GODOY">
+                </div>
+                <div class="form-group">
+                    <label for="edit-docs">Caixas SIGADAER gerenciadas</label>
+                    <textarea id="edit-docs" placeholder="Ex: AVSEC_SJ_02, STI_SJ_AUX_03"></textarea>
+                    <small>Estes itens aparecerão ao passar o mouse na caixa.</small>
+                </div>
+                <div class="form-group">
+                    <label for="edit-forward">Consegue encaminhar para:</label>
+                    <textarea id="edit-forward" placeholder="Exemplo: 
+
+Caixa: AVSEC_SJ_AUX_02
+SO	DOMINGUES	Auxiliar da AVSEC SJ	
+SO	INGRID	Auxiliar da AVSEC SJ	
+SO	MICHELY	Auxiliar da AVSEC-SJ	
+1S	MUNIQUE	Auxiliar da AVSEC SJ...
+
+
+Caixa: STI_SJ_AUX_03
+1º Ten	LUCIANO	Comandante do DTCEA-SJ	
+1º Ten	LUCIANO	CHEFE EMS-1	
+1º Ten	LUCIANO	Chefe da AVSEC SJ...
+
+"></textarea>
+                </div>
+
+
+                <div class="form-actions">
+                    <button class="btn btn-danger" id="delete-node">Excluir</button>
+                    <button class="btn btn-primary" id="save-node">Salvar Alterações</button>
+                </div>
+                <hr>
+                <div class="form-group grid-2">
+                    <button class="btn btn-secondary" id="add-child">
+                        <i data-lucide="plus-circle"></i> Novo Elemento Abaixo
+                    </button>
+                    <button class="btn btn-secondary" id="add-sibling">
+                        <i data-lucide="plus-square"></i> Novo Elemento Lateral
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- Tooltip/Annotation (Floating) -->
+        <div id="annotation-box" class="annotation-box">
+            <div class="annotation-section">
+                <div class="annotation-header">Caixas SIGADAER</div>
+                <div class="annotation-content" id="annotation-content"></div>
+            </div>
+            <div class="annotation-section" id="forward-section">
+                <div class="annotation-header">Encaminha para:</div>
+                <div class="annotation-content" id="annotation-forward"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

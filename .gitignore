@@ -1,0 +1,4 @@
+public/data/backups/
+*.log
+.DS_Store
+Thumbs.db
