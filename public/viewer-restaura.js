@@ -35,6 +35,16 @@ async function loadBackup(filename) {
         // Handle different JSON structures (some have 'data' wrapper, some don't)
         treeData = data.data || data;
         
+        // Exibe banner de construção se o backup sinalizar progresso
+        const constructionBanner = document.getElementById("construction-banner");
+        if (constructionBanner) {
+            if (data.inProgress || (data.data && data.data.inProgress)) {
+                constructionBanner.style.display = "flex";
+            } else {
+                constructionBanner.style.display = "none";
+            }
+        }
+
         renderBackupList(allBackups); // Refresh list to show active item
         initChart();
     } catch (e) {

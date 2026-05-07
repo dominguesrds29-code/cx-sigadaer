@@ -48,11 +48,18 @@
                     style="font-size: 10px; color: var(--accent-color); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800;">
                     Status de Publicação</div>
                 <select id="select-status" class="status-select"
-                    style="width: 100%; background: var(--sidebar-bg); color: white; border: 1px solid var(--border-color); padding: 8px; border-radius: 8px; font-family: inherit; font-size: 12px; cursor: pointer;">
+                    style="width: 100%; background: var(--sidebar-bg); color: white; border: 1px solid var(--border-color); padding: 8px; border-radius: 8px; font-family: inherit; font-size: 12px; cursor: pointer; margin-bottom: 10px;">
                     <option value="private">🔒 Privado</option>
                     <option value="readonly">👁️ Público (Leitura)</option>
                     <option value="public">✏️ Público (Editar Nomes)</option>
                 </select>
+
+                <button id="btn-in-progress" class="status-btn-toggle" 
+                    title="Marcar como em desenvolvimento"
+                    style="width: 100%; background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); padding: 8px; border-radius: 8px; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: all 0.2s;">
+                    <i data-lucide="hammer" style="width: 14px; height: 14px;"></i>
+                    <span>Em Construção</span>
+                </button>
             </div>
 
             <!-- Projects List -->

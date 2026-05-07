@@ -106,15 +106,17 @@ switch ($action) {
     case 'check_lock':
         $id = $_GET['id'] ?? '';
         $status = 'public';
+        $inProgress = false;
         if ($id) {
             $fn = $dataDir . preg_replace('/[^a-zA-Z0-9_\-]/', '', $id) . '.json';
             if (file_exists($fn)) {
                 $p = json_decode(file_get_contents($fn), true);
                 $status = $p['status'] ?? 'public';
+                $inProgress = isset($p['inProgress']) ? (bool)$p['inProgress'] : false;
             }
         }
-        // Agora o check_lock retorna apenas o status, sem trava automática
-        echo json_encode(['locked' => false, 'status' => $status]);
+        // Retorna status e se está em desenvolvimento
+        echo json_encode(['locked' => false, 'status' => $status, 'inProgress' => $inProgress]);
         break;
 
     case 'delete':

@@ -28,15 +28,34 @@ async function loadProjectsFromServer() {
         treeData = projects[activeProjectId].data;
         renderProjectsList();
         initChart();
-        startHeartbeat(activeProjectId);
+        // startHeartbeat(activeProjectId); // Função não definida
 
         // Exibe o controle de status para o projeto inicial
         const statusControl = document.getElementById("project-status-control");
         const selectStatus = document.getElementById("select-status");
         if (statusControl) statusControl.style.display = "block";
         if (selectStatus) selectStatus.value = projects[activeProjectId].status || "public";
+
+        // Inicializa botão 'Em Construção'
+        updateInProgressBtnUI(projects[activeProjectId].inProgress);
     } catch (e) {
         console.error("Erro ao carregar projetos:", e);
+    }
+}
+
+function updateInProgressBtnUI(inProgress) {
+    const btn = document.getElementById("btn-in-progress");
+    if (!btn) return;
+    if (inProgress) {
+        btn.style.background = "#f59e0b";
+        btn.style.color = "white";
+        btn.style.borderColor = "#f59e0b";
+        btn.querySelector("span").innerText = "EM CONSTRUÇÃO";
+    } else {
+        btn.style.background = "rgba(245, 158, 11, 0.1)";
+        btn.style.color = "#f59e0b";
+        btn.style.borderColor = "rgba(245, 158, 11, 0.3)";
+        btn.querySelector("span").innerText = "Finalizado";
     }
 }
 
@@ -277,6 +296,9 @@ async function switchProject(id) {
     const selectStatus = document.getElementById("select-status");
     if (statusControl) statusControl.style.display = "block";
     if (selectStatus) selectStatus.value = projects[id].status || "public";
+    
+    // Atualiza botão 'Em Construção'
+    updateInProgressBtnUI(projects[id].inProgress);
 
     initChart(); 
     localStorage.setItem('organograma_active_project', id);
@@ -414,6 +436,14 @@ function setupEventListeners() {
     document.getElementById("select-status")?.addEventListener("change", (e) => {
         if (!activeProjectId || !projects[activeProjectId]) return;
         projects[activeProjectId].status = e.target.value;
+        saveAll();
+    });
+
+    document.getElementById("btn-in-progress")?.addEventListener("click", () => {
+        if (!activeProjectId || !projects[activeProjectId]) return;
+        const current = !!projects[activeProjectId].inProgress;
+        projects[activeProjectId].inProgress = !current;
+        updateInProgressBtnUI(projects[activeProjectId].inProgress);
         saveAll();
     });
 }

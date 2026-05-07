@@ -679,3 +679,51 @@ body.viewer-mode .return-btn {
     transform: scale(1.1);
 }
 
+/* Construction Banner */
+.construction-banner {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    background: #f59e0b;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    align-items: center;
+    gap: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    animation: slideInDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.construction-banner.active {
+    display: flex;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+/* Status Button Toggle Animation */
+.status-btn-toggle:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+.status-btn-toggle:active {
+    transform: translateY(0);
+}
+
+

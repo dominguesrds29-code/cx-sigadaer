@@ -103,6 +103,16 @@ async function checkProjectLock(id) {
         
         const warning = document.getElementById("lock-warning");
         const saveBtn = document.getElementById("save-node");
+        const constructionBanner = document.getElementById("construction-banner");
+
+        // Banner de Construção
+        if (constructionBanner) {
+            if (result.inProgress) {
+                constructionBanner.classList.add("active");
+            } else {
+                constructionBanner.classList.remove("active");
+            }
+        }
 
         if (isProjectReadonly) {
             if (warning) {
