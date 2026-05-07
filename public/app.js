@@ -50,7 +50,7 @@ function updateInProgressBtnUI(inProgress) {
         btn.style.background = "#f59e0b";
         btn.style.color = "white";
         btn.style.borderColor = "#f59e0b";
-        btn.querySelector("span").innerText = "EM CONSTRUÇÃO";
+        btn.querySelector("span").innerText = "ATUALIZAÇÃO EM ANDAMENTO";
     } else {
         btn.style.background = "rgba(245, 158, 11, 0.1)";
         btn.style.color = "#f59e0b";
