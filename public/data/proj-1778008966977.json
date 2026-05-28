@@ -231,559 +231,503 @@
                 "forwardTo": "*** COMANDANTE  ***\nDTCEASJ_CMT  (CAP GODOY)\n\n\n***** ***   CHEFIAS    *******\nAIS_SJ_CH    (1º TEN LUCIANO)\nASSIPACEA_SJ_CH   (CAP GODOY)\nAVSEC_SJ_CH   (1º TEN GLAUDIO)\nDTR_SJ_CH    (1º TEN LUCIANO)\nEMS1_SJ_CH    (1º TEN LUCIANO)\nINT_SJ_CH   (1º TEN GLAUDIO)\nSA_SJ_CH    (1º TEN GLAUDIO)\nSCS_SJ_CH    (CAP GODOY)\nSELE_SJ_CH    (1º TEN GLAUDIO)\nSELT_SJ_CH    (1º TEN GLAUDIO)\nSIATO_SJ_CH    (CAP GODOY)\nSITS_SJ_CH    (1º TEN GLAUDIO)\nSO_SJ_CHF    (1º TEN LUCIANO)\nST_SJ_CH    (1º TEN GLAUDIO)\nTWR_SJ_CH    (1º TEN LUCIANO)\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)",
                 "children": [
                     {
-                        "id": "node-encarregado-so-custom",
-                        "role": "ENCARREGADO SO",
+                        "id": "node-1777484009850",
+                        "role": "SEC - SO",
                         "name": "SO INGRID",
                         "docs": "SO_SJ_ENC",
-                        "forwardTo": "",
+                        "forwardTo": "***** ***   CHEFIAS    *******\nAIS_SJ_CH    (1º TEN LUCIANO)\nEMS1_SJ_CH    (1º TEN LUCIANO)\nSO_SJ_CHF    (1º TEN LUCIANO)\nTWR_SJ_CH    (1º TEN LUCIANO)\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)",
                         "children": [
                             {
-                                "id": "node-1777483914435",
-                                "role": "EMS1_SJ_ENC",
-                                "name": "SO FONTENELES",
-                                "docs": "EMS1_SJ_ENC\n\n",
-                                "forwardTo": "***** ***   CHEFIAS    *******\nEMS1_SJ_CH    (1º TEN LUCIANO)\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)\n\n\n*** OPERADORES ***\nEMS1_SJ_OPE_01 (SO FONTENELES)\nEMS1_SJ_OPE_02 (2S AMANDA BECK)\nEMS1_SJ_OPE_03 (2S MILAINE)\nEMS1_SJ_OPE_04 (1S ERICKSON)\nEMS1_SJ_OPE_05 (SO MICHELLI RIBEIRO)\nEMS1_SJ_OPE_06 (2S GABRIELE)\nEMS1_SJ_OPE_07 (1S ALMEIDA)\nEMS1_SJ_OPE_10 (1S CAROLINE RUSSELL)\nEMS1_SJ_OPE_11 (3S NATALIA SANTOS)",
-                                "children": [
-                                    {
-                                        "id": "node-1777510696746",
-                                        "role": "OPERADOR EMS1  - 01",
-                                        "name": "SO FONTENELES",
-                                        "docs": "EMS1_SJ_OPE_01",
-                                        "forwardTo": "EMS1_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510726429",
-                                        "role": "OPERADOR EMS1  - 02",
-                                        "name": "2S AMANDA BECK",
-                                        "docs": "EMS1_SJ_OPE_02",
-                                        "forwardTo": "EMS1_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510728377",
-                                        "role": "OPERADOR EMS1  - 03",
-                                        "name": "2S MILAINE",
-                                        "docs": "EMS1_SJ_OPE_03",
-                                        "forwardTo": "EMS1_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510728565",
-                                        "role": "OPERADOR EMS1  - 04",
-                                        "name": "1S ERICKSON",
-                                        "docs": "EMS1_SJ_OPE_04",
-                                        "forwardTo": "EMS1_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510728906",
-                                        "role": "OPERADOR EMS1  - 05",
-                                        "name": "SO MICHELLI RIBEIRO",
-                                        "docs": "EMS1_SJ_OPE_05",
-                                        "forwardTo": "EMS1_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510729054",
-                                        "role": "OPERADOR EMS1  - 06",
-                                        "name": "2S GABRIELE",
-                                        "docs": "EMS1_SJ_OPE_06",
-                                        "forwardTo": "EMS1_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510739612",
-                                        "role": "OPERADOR EMS1 - 07",
-                                        "name": "1S EDUARDO",
-                                        "docs": "EMS1_SJ_OPE_07",
-                                        "forwardTo": "EMS1_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510740682",
-                                        "role": "OPERADOR EMS1  - 08",
-                                        "name": "NOME DO MILITAR",
-                                        "docs": "EMS1_SJ_OPE_08",
-                                        "forwardTo": "EMS1_SJ_ENC",
-                                        "children": []
-                                    }
-                                ]
-                            },
-                            {
-                                "id": "node-1777483968950",
-                                "role": "SALA AIS",
-                                "name": "SO LEITE",
-                                "docs": "AIS_SJ_ENC",
-                                "forwardTo": "***** ***   CHEFIAS    *******\nAIS_SJ_CH    (1º TEN LUCIANO)\n\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)\n\n\n*** OPERADORES ***\nAIS_SJ_OPE_01 (1S MARCOS PAULO)\nAIS_SJ_OPE_02 (2S ALCINO)\nAIS_SJ_OPE_03 (SO LUCIANY)\nAIS_SJ_OPE_04 (2S MARCIO (SJ))\nAIS_SJ_OPE_05 (2S KESSYA)\nAIS_SJ_OPE_06 (SO LEITE)\nAIS_SJ_OPE_07 (3S INES SAMPAIO)\nAIS_SJ_OPE_08 (3S JULIANA COSTA)\nAIS_SJ_OPE_09 (2S BRUNA RIBEIRO)\nAIS_SJ_OPE_10 (1S MICHELE)",
-                                "children": [
-                                    {
-                                        "id": "node-1777510270203",
-                                        "role": "OPERADOR AIS - 01",
-                                        "name": "1S MARCOS PAULO",
-                                        "docs": "AIS_SJ_OPE_01",
-                                        "forwardTo": "AIS_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510286644",
-                                        "role": "OPERADOR AIS - 02",
-                                        "name": "2S ALCINO",
-                                        "docs": "AIS_SJ_OPE_02",
-                                        "forwardTo": "AIS_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510287659",
-                                        "role": "OPERADOR AIS - 03",
-                                        "name": "SO LUCIANY",
-                                        "docs": "AIS_SJ_OPE_03",
-                                        "forwardTo": "AIS_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510288524",
-                                        "role": "OPERADOR AIS - 04",
-                                        "name": "2S MARCIO",
-                                        "docs": "AIS_SJ_OPE_04",
-                                        "forwardTo": "AIS_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510337074",
-                                        "role": "OPERADOR AIS - 05",
-                                        "name": "2S KESSYA",
-                                        "docs": "AIS_SJ_OPE_05",
-                                        "forwardTo": "AIS_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510338580",
-                                        "role": "OPERADOR AIS - 06",
-                                        "name": "SO LEITE",
-                                        "docs": "AIS_SJ_OPE_06",
-                                        "forwardTo": "AIS_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510338960",
-                                        "role": "OPERADOR AIS - 07",
-                                        "name": "3S INES SAMPAIO",
-                                        "docs": "AIS_SJ_OPE_7",
-                                        "forwardTo": "AIS_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777510339305",
-                                        "role": "OPERADOR AIS - 08",
-                                        "name": "2S BRUNA RIBEIRO",
-                                        "docs": "AIS_SJ_OPE_09",
-                                        "forwardTo": "AIS_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1779124155661",
-                                        "role": "OPERADOR AIS - 09",
-                                        "name": "1S MICHELE",
-                                        "docs": "AIS_SJ_OPE_10",
-                                        "forwardTo": "AIS_SJ_ENC",
-                                        "children": []
-                                    }
-                                ]
-                            },
-                            {
-                                "id": "node-1777484009850",
-                                "role": "SEC - SO",
+                                "id": "node-encarregado-so-custom",
+                                "role": "ENCARREGADO SO",
                                 "name": "SO INGRID",
                                 "docs": "SO_SJ_ENC",
-                                "forwardTo": "***** ***   CHEFIAS    *******\nAIS_SJ_CH    (1º TEN LUCIANO)\nEMS1_SJ_CH    (1º TEN LUCIANO)\nSO_SJ_CHF    (1º TEN LUCIANO)\nTWR_SJ_CH    (1º TEN LUCIANO)\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)",
+                                "forwardTo": "",
                                 "children": [
                                     {
-                                        "id": "node-1777511821528",
-                                        "role": "AUXILIAR SEC-SO - 01",
-                                        "name": "SO INGRID",
-                                        "docs": "SO_SJ_AUX_01",
-                                        "forwardTo": "SO_SJ_ENC",
-                                        "children": []
+                                        "id": "node-1777483914435",
+                                        "role": "EMS1_SJ_ENC",
+                                        "name": "SO FONTENELES",
+                                        "docs": "EMS1_SJ_ENC\n\n",
+                                        "forwardTo": "***** ***   CHEFIAS    *******\nEMS1_SJ_CH    (1º TEN LUCIANO)\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)\n\n\n*** OPERADORES ***\nEMS1_SJ_OPE_01 (SO FONTENELES)\nEMS1_SJ_OPE_02 (2S AMANDA BECK)\nEMS1_SJ_OPE_03 (2S MILAINE)\nEMS1_SJ_OPE_04 (1S ERICKSON)\nEMS1_SJ_OPE_05 (SO MICHELLI RIBEIRO)\nEMS1_SJ_OPE_06 (2S GABRIELE)\nEMS1_SJ_OPE_07 (1S ALMEIDA)\nEMS1_SJ_OPE_10 (1S CAROLINE RUSSELL)\nEMS1_SJ_OPE_11 (3S NATALIA SANTOS)",
+                                        "children": [
+                                            {
+                                                "id": "node-1777510696746",
+                                                "role": "OPERADOR EMS1  - 01",
+                                                "name": "SO FONTENELES",
+                                                "docs": "EMS1_SJ_OPE_01",
+                                                "forwardTo": "EMS1_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510726429",
+                                                "role": "OPERADOR EMS1  - 02",
+                                                "name": "2S AMANDA BECK",
+                                                "docs": "EMS1_SJ_OPE_02",
+                                                "forwardTo": "EMS1_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510728377",
+                                                "role": "OPERADOR EMS1  - 03",
+                                                "name": "2S MILAINE",
+                                                "docs": "EMS1_SJ_OPE_03",
+                                                "forwardTo": "EMS1_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510728565",
+                                                "role": "OPERADOR EMS1  - 04",
+                                                "name": "1S ERICKSON",
+                                                "docs": "EMS1_SJ_OPE_04",
+                                                "forwardTo": "EMS1_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510728906",
+                                                "role": "OPERADOR EMS1  - 05",
+                                                "name": "SO MICHELLI RIBEIRO",
+                                                "docs": "EMS1_SJ_OPE_05",
+                                                "forwardTo": "EMS1_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510729054",
+                                                "role": "OPERADOR EMS1  - 06",
+                                                "name": "2S GABRIELE",
+                                                "docs": "EMS1_SJ_OPE_06",
+                                                "forwardTo": "EMS1_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510739612",
+                                                "role": "OPERADOR EMS1 - 07",
+                                                "name": "1S EDUARDO",
+                                                "docs": "EMS1_SJ_OPE_07",
+                                                "forwardTo": "EMS1_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510740682",
+                                                "role": "OPERADOR EMS1  - 08",
+                                                "name": "NOME DO MILITAR",
+                                                "docs": "EMS1_SJ_OPE_08",
+                                                "forwardTo": "EMS1_SJ_ENC",
+                                                "children": []
+                                            }
+                                        ]
                                     },
                                     {
-                                        "id": "node-1777511828289",
-                                        "role": "AUXILIAR SEC-SO - 02",
-                                        "name": "1S TAÍS",
-                                        "docs": "SO_SJ_AUX_02",
-                                        "forwardTo": "SO_SJ_ENC",
-                                        "children": []
+                                        "id": "node-1777483968950",
+                                        "role": "SALA AIS",
+                                        "name": "SO LEITE",
+                                        "docs": "AIS_SJ_ENC",
+                                        "forwardTo": "***** ***   CHEFIAS    *******\nAIS_SJ_CH    (1º TEN LUCIANO)\n\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)\n\n\n*** OPERADORES ***\nAIS_SJ_OPE_01 (1S MARCOS PAULO)\nAIS_SJ_OPE_02 (2S ALCINO)\nAIS_SJ_OPE_03 (SO LUCIANY)\nAIS_SJ_OPE_04 (2S MARCIO (SJ))\nAIS_SJ_OPE_05 (2S KESSYA)\nAIS_SJ_OPE_06 (SO LEITE)\nAIS_SJ_OPE_07 (3S INES SAMPAIO)\nAIS_SJ_OPE_08 (3S JULIANA COSTA)\nAIS_SJ_OPE_09 (2S BRUNA RIBEIRO)\nAIS_SJ_OPE_10 (1S MICHELE)",
+                                        "children": [
+                                            {
+                                                "id": "node-1777510270203",
+                                                "role": "OPERADOR AIS - 01",
+                                                "name": "1S MARCOS PAULO",
+                                                "docs": "AIS_SJ_OPE_01",
+                                                "forwardTo": "AIS_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510286644",
+                                                "role": "OPERADOR AIS - 02",
+                                                "name": "2S ALCINO",
+                                                "docs": "AIS_SJ_OPE_02",
+                                                "forwardTo": "AIS_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510287659",
+                                                "role": "OPERADOR AIS - 03",
+                                                "name": "SO LUCIANY",
+                                                "docs": "AIS_SJ_OPE_03",
+                                                "forwardTo": "AIS_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510288524",
+                                                "role": "OPERADOR AIS - 04",
+                                                "name": "2S MARCIO",
+                                                "docs": "AIS_SJ_OPE_04",
+                                                "forwardTo": "AIS_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510337074",
+                                                "role": "OPERADOR AIS - 05",
+                                                "name": "2S KESSYA",
+                                                "docs": "AIS_SJ_OPE_05",
+                                                "forwardTo": "AIS_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510338580",
+                                                "role": "OPERADOR AIS - 06",
+                                                "name": "SO LEITE",
+                                                "docs": "AIS_SJ_OPE_06",
+                                                "forwardTo": "AIS_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510338960",
+                                                "role": "OPERADOR AIS - 07",
+                                                "name": "3S INES SAMPAIO",
+                                                "docs": "AIS_SJ_OPE_7",
+                                                "forwardTo": "AIS_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777510339305",
+                                                "role": "OPERADOR AIS - 08",
+                                                "name": "2S BRUNA RIBEIRO",
+                                                "docs": "AIS_SJ_OPE_09",
+                                                "forwardTo": "AIS_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1779124155661",
+                                                "role": "OPERADOR AIS - 09",
+                                                "name": "1S MICHELE",
+                                                "docs": "AIS_SJ_OPE_10",
+                                                "forwardTo": "AIS_SJ_ENC",
+                                                "children": []
+                                            }
+                                        ]
                                     },
                                     {
-                                        "id": "node-1777511828382",
-                                        "role": "AUXILIAR SEC-SO - 03",
-                                        "name": "NOME DO MILITAR",
-                                        "docs": "SO_SJ_AUX_03",
-                                        "forwardTo": "SO_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777511828529",
-                                        "role": "AUXILIAR SEC-SO - 04",
-                                        "name": "NOME DO MILITAR",
-                                        "docs": "SO_SJ_AUX_04",
-                                        "forwardTo": "SO_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1779126458693",
-                                        "role": "AUXILIAR SEC-SO - 05",
-                                        "name": "NOME DO MILITAR",
-                                        "docs": "SO_SJ_AUX_05",
-                                        "forwardTo": "SO_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1779127622648",
-                                        "role": "AUXILIAR SEC-SO - 06",
-                                        "name": "2S MARCELLE DILÉO",
-                                        "docs": "SO_SJ_AUX_06",
-                                        "forwardTo": "SO_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1779127623255",
-                                        "role": "AUXILIAR SEC-SO - 07",
-                                        "name": "NOME DO MILITAR",
-                                        "docs": "SO_SJ_AUX_07",
-                                        "forwardTo": "SO_SJ_ENC",
-                                        "children": []
-                                    }
-                                ]
-                            },
-                            {
-                                "id": "node-1777484055414",
-                                "role": "TWR",
-                                "name": "SO NUNES",
-                                "docs": "TWR_SJ_ENC (criar a caixa)",
-                                "forwardTo": "AIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)",
-                                "children": [
-                                    {
-                                        "id": "node-1777488270472",
-                                        "role": "OPERADOR TWR - 01",
+                                        "id": "node-1777484055414",
+                                        "role": "TWR",
                                         "name": "SO NUNES",
-                                        "docs": "TWR_SJ_OPE_06",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
+                                        "docs": "TWR_SJ_ENC (criar a caixa)",
+                                        "forwardTo": "AIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)",
+                                        "children": [
+                                            {
+                                                "id": "node-1777488270472",
+                                                "role": "OPERADOR TWR - 01",
+                                                "name": "SO NUNES",
+                                                "docs": "TWR_SJ_OPE_06",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777488329133",
+                                                "role": "OPERADOR TWR - 02",
+                                                "name": "SO INGRID",
+                                                "docs": "TWR_SJ_OPE_04",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777488331749",
+                                                "role": "OPERADOR TWR - 03",
+                                                "name": "1S TAÍS",
+                                                "docs": "TWR_SJ_OPE_07",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777488333524",
+                                                "role": "OPERADOR TWR - 04",
+                                                "name": "1S RAFAEL CIPRIANO",
+                                                "docs": "TWR_SJ_OPE_09",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777488335477",
+                                                "role": "OPERADOR TWR - 05",
+                                                "name": "1S BEATRIZ ",
+                                                "docs": "TWR_SJ_OPE_10",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777488337316",
+                                                "role": "OPERADOR TWR - 06",
+                                                "name": "1S JONATHAN",
+                                                "docs": "TWR_SJ_OPE_03",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777489554636",
+                                                "role": "OPERADOR TWR - 07",
+                                                "name": "1S THAIS HERZOG",
+                                                "docs": "TWR_SJ_OPE_02",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777489558037",
+                                                "role": "OPERADOR TWR - 08",
+                                                "name": "1S DIANE",
+                                                "docs": "TWR_SJ_OPE_19",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777489562364",
+                                                "role": "OPERADOR TWR - 09",
+                                                "name": "1S CAROLINA DUARTE",
+                                                "docs": "TWR_SJ_OPE_12",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777489568148",
+                                                "role": "OPERADOR TWR - 10",
+                                                "name": "1S CARLOS",
+                                                "docs": "TWR_SJ_OPE_35",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777489571211",
+                                                "role": "OPERADOR TWR - 11",
+                                                "name": "1S ESTEVES",
+                                                "docs": "TWR_SJ_OPE_18",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777489575507",
+                                                "role": "OPERADOR TWR - 12",
+                                                "name": "1S BRUNO HENRIQUE",
+                                                "docs": "TWR_SJ_OPE_30",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777489577395",
+                                                "role": "OPERADOR TWR - 13",
+                                                "name": "1S WINNIE",
+                                                "docs": "TWR_SJ_OPE_05",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777489581266",
+                                                "role": "OPERADOR TWR - 14",
+                                                "name": "1S ESTEVES",
+                                                "docs": "TWR_SJ_OPE_18",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777490024488",
+                                                "role": "OPERADOR TWR - 15",
+                                                "name": "2S MARCELA",
+                                                "docs": "TWR_SJ_OPE_32",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777490026920",
+                                                "role": "OPERADOR TWR - 16",
+                                                "name": "2S JESSICA ANJOS",
+                                                "docs": "TWR_SJ_OPE_24",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777490033728",
+                                                "role": "OPERADOR TWR - 17",
+                                                "name": "2S MEDEIROS",
+                                                "docs": "TWR_SJ_OPE_15",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777490035743",
+                                                "role": "OPERADOR TWR - 18",
+                                                "name": "2S THAMIRES SOUZA",
+                                                "docs": "EDITAR (TWR_SJ_AUX_02) \nPARA\nTWR_SJ_OPE_36",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777490042559",
+                                                "role": "OPERADOR TWR - 19",
+                                                "name": "2S ALESSANDRA",
+                                                "docs": "TWR_SJ_OPE_25",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777490044223",
+                                                "role": "OPERADOR TWR - 20",
+                                                "name": "3S LíLLIAN",
+                                                "docs": "TWR_SJ_OPE_20",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777490048311",
+                                                "role": "OPERADOR TWR - 21",
+                                                "name": "3S SARAH",
+                                                "docs": "TWR_SJ_OPE_27",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777490053014",
+                                                "role": "OPERADOR TWR - 22",
+                                                "name": "3S LUCAS ROBERTO",
+                                                "docs": "TWR_SJ_OPE_31",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1777490078948",
+                                                "role": "OPERADOR TWR - 23",
+                                                "name": "3S MICHAEL",
+                                                "docs": "TWR_SJ_OPE_08",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184601134",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184602470",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184603326",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184604150",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184604862",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184605878",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184606799",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184607557",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184608189",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184608766",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184609285",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184605447",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184606333",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184607199",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184607902",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            },
+                                            {
+                                                "id": "node-1778184608501",
+                                                "role": "NOVO CARGO",
+                                                "name": "NOME DA PESSOA",
+                                                "docs": "",
+                                                "forwardTo": "TWR_SJ_ENC",
+                                                "children": []
+                                            }
+                                        ]
                                     },
                                     {
-                                        "id": "node-1777488329133",
-                                        "role": "OPERADOR TWR - 02",
-                                        "name": "SO INGRID",
-                                        "docs": "TWR_SJ_OPE_04",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777488331749",
-                                        "role": "OPERADOR TWR - 03",
-                                        "name": "1S TAÍS",
-                                        "docs": "TWR_SJ_OPE_07",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777488333524",
-                                        "role": "OPERADOR TWR - 04",
-                                        "name": "1S RAFAEL CIPRIANO",
-                                        "docs": "TWR_SJ_OPE_09",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777488335477",
-                                        "role": "OPERADOR TWR - 05",
-                                        "name": "1S BEATRIZ ",
-                                        "docs": "TWR_SJ_OPE_10",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777488337316",
-                                        "role": "OPERADOR TWR - 06",
-                                        "name": "1S JONATHAN",
-                                        "docs": "TWR_SJ_OPE_03",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777489554636",
-                                        "role": "OPERADOR TWR - 07",
-                                        "name": "1S THAIS HERZOG",
-                                        "docs": "TWR_SJ_OPE_02",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777489558037",
-                                        "role": "OPERADOR TWR - 08",
-                                        "name": "1S DIANE",
-                                        "docs": "TWR_SJ_OPE_19",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777489562364",
-                                        "role": "OPERADOR TWR - 09",
-                                        "name": "1S CAROLINA DUARTE",
-                                        "docs": "TWR_SJ_OPE_12",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777489568148",
-                                        "role": "OPERADOR TWR - 10",
-                                        "name": "1S CARLOS",
-                                        "docs": "TWR_SJ_OPE_35",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777489571211",
-                                        "role": "OPERADOR TWR - 11",
-                                        "name": "1S ESTEVES",
-                                        "docs": "TWR_SJ_OPE_18",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777489575507",
-                                        "role": "OPERADOR TWR - 12",
-                                        "name": "1S BRUNO HENRIQUE",
-                                        "docs": "TWR_SJ_OPE_30",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777489577395",
-                                        "role": "OPERADOR TWR - 13",
-                                        "name": "1S WINNIE",
-                                        "docs": "TWR_SJ_OPE_05",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777489581266",
-                                        "role": "OPERADOR TWR - 14",
-                                        "name": "1S ESTEVES",
-                                        "docs": "TWR_SJ_OPE_18",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777490024488",
-                                        "role": "OPERADOR TWR - 15",
-                                        "name": "2S MARCELA",
-                                        "docs": "TWR_SJ_OPE_32",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777490026920",
-                                        "role": "OPERADOR TWR - 16",
-                                        "name": "2S JESSICA ANJOS",
-                                        "docs": "TWR_SJ_OPE_24",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777490033728",
-                                        "role": "OPERADOR TWR - 17",
-                                        "name": "2S MEDEIROS",
-                                        "docs": "TWR_SJ_OPE_15",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777490035743",
-                                        "role": "OPERADOR TWR - 18",
-                                        "name": "2S THAMIRES SOUZA",
-                                        "docs": "EDITAR (TWR_SJ_AUX_02) \nPARA\nTWR_SJ_OPE_36",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777490042559",
-                                        "role": "OPERADOR TWR - 19",
-                                        "name": "2S ALESSANDRA",
-                                        "docs": "TWR_SJ_OPE_25",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777490044223",
-                                        "role": "OPERADOR TWR - 20",
-                                        "name": "3S LíLLIAN",
-                                        "docs": "TWR_SJ_OPE_20",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777490048311",
-                                        "role": "OPERADOR TWR - 21",
-                                        "name": "3S SARAH",
-                                        "docs": "TWR_SJ_OPE_27",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777490053014",
-                                        "role": "OPERADOR TWR - 22",
-                                        "name": "3S LUCAS ROBERTO",
-                                        "docs": "TWR_SJ_OPE_31",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1777490078948",
-                                        "role": "OPERADOR TWR - 23",
-                                        "name": "3S MICHAEL",
-                                        "docs": "TWR_SJ_OPE_08",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184601134",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184602470",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184603326",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184604150",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184604862",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184605878",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184606799",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184607557",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184608189",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184608766",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184609285",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184605447",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184606333",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184607199",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184607902",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
-                                        "children": []
-                                    },
-                                    {
-                                        "id": "node-1778184608501",
-                                        "role": "NOVO CARGO",
-                                        "name": "NOME DA PESSOA",
-                                        "docs": "",
-                                        "forwardTo": "TWR_SJ_ENC",
+                                        "id": "node-1777914921530",
+                                        "role": "DOUTRINA",
+                                        "name": "1S FRANCONERE",
+                                        "docs": "DTR_SJ_ENC",
+                                        "forwardTo": "***** ***   CHEFIAS    *******\nAIS_SJ_CH    (1º TEN LUCIANO)\nASSIPACEA_SJ_CH   (CAP GODOY)\nEMS1_SJ_CH    (1º TEN LUCIANO)\nSIATO_SJ_CH    (CAP GODOY)\nSO_SJ_CHF    (1º TEN LUCIANO)\nTWR_SJ_CH    (1º TEN LUCIANO)\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)",
                                         "children": []
                                     }
                                 ]
-                            },
-                            {
-                                "id": "node-1777914921530",
-                                "role": "DOUTRINA",
-                                "name": "1S FRANCONERE",
-                                "docs": "DTR_SJ_ENC",
-                                "forwardTo": "***** ***   CHEFIAS    *******\nAIS_SJ_CH    (1º TEN LUCIANO)\nASSIPACEA_SJ_CH   (CAP GODOY)\nEMS1_SJ_CH    (1º TEN LUCIANO)\nSIATO_SJ_CH    (CAP GODOY)\nSO_SJ_CHF    (1º TEN LUCIANO)\nTWR_SJ_CH    (1º TEN LUCIANO)\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)",
-                                "children": []
                             }
                         ]
                     }
