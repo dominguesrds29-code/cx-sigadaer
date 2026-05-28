@@ -473,7 +473,7 @@ function animateDocumentFlow(startNode) {
             .attr("fill", "rgba(255,255,255,0.3)");
 
         marker.transition()
-            .duration(600)
+            .duration(1000)
             .ease(d3.easeQuadInOut)
             .tween("pathTween", function() {
                 return function(t) {
