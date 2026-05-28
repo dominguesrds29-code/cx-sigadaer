@@ -189,6 +189,8 @@ function update(source) {
                 if (d.children) { d._children = d.children; d.children = null; }
                 else { d.children = d._children; d._children = null; }
                 update(d);
+            } else {
+                animateDocumentFlow(d);
             }
         }
     });
@@ -368,3 +370,86 @@ document.addEventListener("DOMContentLoaded", () => {
     loadProjectsFromServer();
     if (window.lucide) lucide.createIcons();
 });
+
+function animateDocumentFlow(startNode) {
+    if (!startNode.parent) return;
+    
+    const path = [];
+    let current = startNode;
+    while (current.parent) {
+        path.push({ source: current.parent, target: current });
+        current = current.parent;
+    }
+    
+    let segmentIndex = 0;
+    
+    function animateSegment() {
+        if (segmentIndex >= path.length) return;
+        const segment = path[segmentIndex];
+        
+        const pathData = diagonal(segment.source, segment.target);
+        
+        const tempPath = g.append("path")
+            .attr("d", pathData)
+            .style("fill", "none")
+            .style("stroke", "none");
+            
+        const pathNode = tempPath.node();
+        const totalLength = pathNode.getTotalLength();
+        
+        const marker = g.append("g")
+            .attr("class", "flow-marker");
+            
+        const envelope = marker.append("g")
+            .attr("transform", "translate(-12, -8)");
+            
+        envelope.append("rect")
+            .attr("width", 24)
+            .attr("height", 16)
+            .attr("rx", 3)
+            .attr("fill", "var(--accent-color)")
+            .style("filter", "drop-shadow(0 0 6px var(--accent-color))");
+            
+        envelope.append("polygon")
+            .attr("points", "0,0 12,8 24,0")
+            .attr("fill", "rgba(255,255,255,0.7)");
+            
+        envelope.append("polygon")
+            .attr("points", "0,16 12,8 24,16")
+            .attr("fill", "rgba(255,255,255,0.3)");
+
+        marker.transition()
+            .duration(600)
+            .ease(d3.easeQuadInOut)
+            .tween("pathTween", function() {
+                return function(t) {
+                    const p = pathNode.getPointAtLength(totalLength * (1 - t));
+                    marker.attr("transform", `translate(${p.x}, ${p.y})`);
+                };
+            })
+            .on("end", function() {
+                marker.remove();
+                tempPath.remove();
+                
+                const parentNodeG = g.selectAll(".node-container")
+                    .filter(d => d.data.id === segment.source.data.id);
+                    
+                parentNodeG.select(".node-rect")
+                    .transition()
+                    .duration(200)
+                    .style("filter", "drop-shadow(0 0 15px var(--accent-color))")
+                    .style("stroke", "var(--accent-color)")
+                    .style("stroke-width", "3px")
+                    .transition()
+                    .duration(200)
+                    .style("filter", null)
+                    .style("stroke", d => d._children ? "var(--accent-color)" : "rgba(255,255,255,0.1)")
+                    .style("stroke-width", "1px");
+                
+                segmentIndex++;
+                animateSegment();
+            });
+    }
+    
+    animateSegment();
+}
