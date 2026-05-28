@@ -683,6 +683,14 @@
                         "forwardTo": "Cap\tGODOY\tChefe da SCS\t\nCap\tGODOY\tComandante do DTCEA-SJ\t\n1º Ten\tGLAUDIO\tCh da ST do DTCEA-SJ\t\n1º Ten\tGLAUDIO\tCHEFE SELT DTCEA-SJ\t\n1º Ten\tGLAUDIO\tChefe da AVSEC SJ\t\n1º Ten\tGLAUDIO\tAdjunto da Seção Técnica\t\n1º Ten\tLUCIANO \tChefe da AVSEC SJ\t\n1º Ten\tLUCIANO \tComandante do DTCEA-SJ\t\n1º Ten\tLUCIANO \tCHEFE EMS-1\t\nSO\tALEX\tENCARREGADO ST DTCEA-SJ\t\nSO\tBECKMANN\tENCARREGADO SELT DTCEA-SJ\t\nSO\tBECKMANN\tAUXILIAR SELT DTCEA-SJ\t\nSO\tCLAUDIONOR \tAUXILIAR STI DTCEA-SJ\t\nSO\tDOMINGUES \tAUXILIAR STI DTCEA-SJ\t\nSO\tFONTENELES\tENCARREGADO EMS1-SJ DTCEA-SJ\t\nSO\tINGRID\tENCARREGADO DA SEC-SO DTCEA-SJ\t\nSO\tLEITE\tENCARREGADO AIS DTCEA-SJ\t\nSO\tLUCIANY\tENCARREGADO AIS DTCEA-SJ\t\nSO\tMICHELY\tAUXILIAR SELT DTCEA-SJ\t\nSO\tPEREIRA\tEncarregado do DTCEA-SJ\t\nSO\tPEREIRA\tENCARREGADO STI DTCEA-SJ\t\n1S\tBEATRIZ\tENCARREGADO SIATO DTCEA-SJ\t\n1S\tBEATRIZ\tENCARREGADO DA SEC-SO DTCEA-SJ\t\n1S\tÉRICA\tENCARREGADO DA SGSO DTCEA-SJ\t\n1S\tÉRICA\tENCARREGADO ASSIPACEA DTCEA-SJ\t\n1S\tMARCOS PAULO \tENCARREGADO AIS DTCEA-SJ\t\n1S\tTAÍS\tENCARREGADO DA SEC-SO DTCEA-SJ\t\n2S\tALESSANDRA (SJ)\tEncarregado\t\n2S\tALESSANDRA (SJ)\tEncarregado da SA do DTCEA-SJ\t\n2S\tBIANCA\tAUXILIAR SELT DTCEA-SJ\t\n2S\tBIANCA\tAUXILIAR SELT DTCEA-SJ\t\n2S\tBRUNO SILVA\tAUXILIAR SELT DTCEA-SJ\t\n2S\tFRANCONERE\tEncarregado da Seção de Doutrina\t\n2S\tGABRIELE\tENCARREGADO SIATO DTCEA-SJ\t\n2S\tKESSYA\tEncarregado\t\n2S\tMARCELA\tENCARREGADO SIATO DTCEA-SJ\t\n2S\tMARCELLE DILÉO\tENCARREGADO DA SEC-SO DTCEA-SJ\t\n2S\tMARRANI\tAUXLIAR DA SELM\t\n2S\tMAYSE\tENCARREGADO SCS\t\n2S\tMAYSE\tENCARREGADO SSUP DTCEA-SJ\t\n2S\tNOGUEIRA\tENCARREGADO SELE-SJ\t\n2S\tRAMOS\tAUXILIAR SELT DTCEA-SJ\t\n3S\tJOAO PAULO \tEncarregado\t\n3S\tSARAH\tENCARREGADO SIATO DTCEA-SJ\t\n3S\tSARAH\tENCARREGADO DA SEC-SO DTCEA-SJ\t\nCb\tGABRIEL(SJ)\tENCARREGADO SSUP DTCEA-SJ\t\nCb\tM.LIMA\tAUXILIAR STI DTCEA-SJ\t\nS1\tP. CORREA\tEncarregado\t\nS2\tG. CÂNDIDO\tAUXILIAR STI DTCEA-SJ\t\nS2\tTHOMAZ\tENCARREGADO SIATO DTCEA-SJ\t\n",
                         "children": [
                             {
+                                "id": "node-sec-st-custom",
+                                "role": "SEC-ST",
+                                "name": "SO ALEX",
+                                "docs": "SEC_ST_SJ_ENC",
+                                "forwardTo": "",
+                                "children": []
+                            },
+                            {
                                 "id": "node-1777490006398",
                                 "role": "SELT",
                                 "name": "SO BECKMANN",
