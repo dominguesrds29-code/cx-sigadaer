@@ -364,12 +364,111 @@ function setupEventListeners() {
         setTimeout(() => { const d3Node = root.descendants().find(n => n.data.id === newNode.id); if (d3Node) openEditPanel(d3Node); }, 500);
     });
 
+    document.getElementById("insert-parent")?.addEventListener("click", () => {
+        if (!selectedNode || selectedNode.data.id === "root") return;
+        
+        const nodeId = selectedNode.data.id;
+        
+        function findNodeInRaw(node, id) {
+            if (node.id === id) return node;
+            if (node.children) {
+                for (const child of node.children) {
+                    const found = findNodeInRaw(child, id);
+                    if (found) return found;
+                }
+            }
+            return null;
+        }
+        
+        function findParentInRaw(node, id) {
+            if (!node.children) return null;
+            for (let i = 0; i < node.children.length; i++) {
+                if (node.children[i].id === id) return node;
+                const found = findParentInRaw(node.children[i], id);
+                if (found) return found;
+            }
+            return null;
+        }
+        
+        const rawParent = findParentInRaw(treeData, nodeId);
+        const rawNode = findNodeInRaw(treeData, nodeId);
+        
+        if (rawParent && rawNode) {
+            const newNode = {
+                id: "node-" + Date.now(),
+                role: "NOVO CARGO INTERMEDIÁRIO",
+                name: "NOME DA PESSOA",
+                docs: "",
+                forwardTo: "",
+                children: []
+            };
+            
+            const groupAll = confirm("Deseja agrupar TODOS os elementos deste nível sob o novo elemento intermediário? \n\n(Clique em 'Cancelar' para mover apenas o elemento selecionado)");
+            
+            if (groupAll) {
+                newNode.children = [...rawParent.children];
+                rawParent.children = [newNode];
+            } else {
+                const index = rawParent.children.findIndex(c => c.id === nodeId);
+                if (index !== -1) {
+                    newNode.children = [rawNode];
+                    rawParent.children.splice(index, 1, newNode);
+                }
+            }
+            
+            root = d3.hierarchy(treeData);
+            saveAll();
+            initChart();
+            
+            // Open edit panel for the newly created intermediate node
+            setTimeout(() => {
+                const d3Node = root.descendants().find(n => n.data.id === newNode.id);
+                if (d3Node) openEditPanel(d3Node);
+            }, 500);
+        }
+    });
+
     document.getElementById("delete-node")?.addEventListener("click", () => {
         if (!selectedNode || selectedNode.data.id === "root") return;
-        if (confirm("Excluir este nó?")) {
-            const parent = selectedNode.parent;
-            parent.data.children = parent.data.children.filter(c => c.id !== selectedNode.data.id);
-            root = d3.hierarchy(treeData); saveAll(); update(parent); closeEditPanel();
+        if (confirm("Excluir este nó? (Os sub-elementos serão mantidos e subirão de nível)")) {
+            const nodeId = selectedNode.data.id;
+            
+            // Helper functions to search directly in raw treeData
+            function findNodeInRaw(node, id) {
+                if (node.id === id) return node;
+                if (node.children) {
+                    for (const child of node.children) {
+                        const found = findNodeInRaw(child, id);
+                        if (found) return found;
+                    }
+                }
+                return null;
+            }
+            
+            function findParentInRaw(node, id) {
+                if (!node.children) return null;
+                for (let i = 0; i < node.children.length; i++) {
+                    if (node.children[i].id === id) return node;
+                    const found = findParentInRaw(node.children[i], id);
+                    if (found) return found;
+                }
+                return null;
+            }
+            
+            const rawParent = findParentInRaw(treeData, nodeId);
+            const rawNode = findNodeInRaw(treeData, nodeId);
+            
+            if (rawParent && rawNode) {
+                const index = rawParent.children.findIndex(c => c.id === nodeId);
+                if (index !== -1) {
+                    const nodeChildren = rawNode.children || [];
+                    rawParent.children.splice(index, 1, ...nodeChildren);
+                }
+            }
+            
+            saveAll();
+            initChart();
+            closeEditPanel();
         }
     });
 
