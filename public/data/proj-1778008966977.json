@@ -42,14 +42,6 @@
                 ]
             },
             {
-                "id": "node-1777482106922",
-                "role": "COMUNICAÇÃO SOCIAL",
-                "name": "2S MAYSE",
-                "docs": "SCS_SJ_ENC",
-                "forwardTo": "*** COMANDANTE  ***\nSCS_SJ_CH    (CAP GODOY)\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)",
-                "children": []
-            },
-            {
                 "id": "node-1777482298168",
                 "role": "SEÇÃO ADMINISTRATIVA - SA",
                 "name": "1º TEN GLAUDIO",
