@@ -42,80 +42,6 @@
                 ]
             },
             {
-                "id": "node-1777481406907",
-                "role": "SIATO",
-                "name": "1S BEATRIZ",
-                "docs": "SIATO_SJ_ENC",
-                "forwardTo": "*** COMANDANTE  ***\nSIATO_SJ_CH   (CAP GODOY)\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)\n\n\n*** AUXILIARES ***\nSIATO_SJ_AUX_01\nSIATO_SJ_AUX_02\nSIATO_SJ_AUX_03",
-                "children": [
-                    {
-                        "id": "node-1777511705590",
-                        "role": "AUXILIAR SIATO - 01",
-                        "name": "S2 THOMAZ",
-                        "docs": "SIATO_SJ_AUX_01",
-                        "forwardTo": "SIATO_SJ_ENC",
-                        "children": []
-                    },
-                    {
-                        "id": "node-1779113841209",
-                        "role": "AUXILIAR SIATO - 02",
-                        "name": "2S GABRIELE",
-                        "docs": "SIATO_SJ_AUX_02",
-                        "forwardTo": "SIATO_SJ_ENC",
-                        "children": []
-                    },
-                    {
-                        "id": "node-1779113853784",
-                        "role": "AUXILIAR SIATO - 03",
-                        "name": "NOME DO MILITAR",
-                        "docs": "SIATO_SJ_AUX_03",
-                        "forwardTo": "SIATO_SJ_ENC",
-                        "children": []
-                    }
-                ]
-            },
-            {
-                "id": "node-1777481787127",
-                "role": "AVSEC",
-                "name": "1º TEN GLAUDIO",
-                "docs": "AVSEC_SJ_CH\n",
-                "forwardTo": "*** COMANDANTE  ***\nDTCEASJ_CMT  (CAP GODOY)\n\n\n***** ***   CHEFIAS    *******\nAIS_SJ_CH    (1º TEN LUCIANO)\nASSIPACEA_SJ_CH   (CAP GODOY)\nAVSEC_SJ_CH   (1º TEN GLAUDIO)\nDTR_SJ_CH    (1º TEN LUCIANO)\nEMS1_SJ_CH    (1º TEN LUCIANO)\nINT_SJ_CH   (1º TEN GLAUDIO)\nSA_SJ_CH    (1º TEN GLAUDIO)\nSCS_SJ_CH    (CAP GODOY)\nSELE_SJ_CH    (1º TEN GLAUDIO)\nSELT_SJ_CH    (1º TEN GLAUDIO)\nSIATO_SJ_CH    (CAP GODOY)\nSITS_SJ_CH    (1º TEN GLAUDIO)\nSO_SJ_CHF    (1º TEN LUCIANO)\nST_SJ_CH    (1º TEN GLAUDIO)\nTWR_SJ_CH    (1º TEN LUCIANO)\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)",
-                "children": [
-                    {
-                        "id": "node-1777513437464",
-                        "role": "AUXILIAR AVSEC - 01",
-                        "name": "SO MICHELY",
-                        "docs": "AVSEC_SJ_AUX_01",
-                        "forwardTo": "AVSEC_SJ_CH",
-                        "children": []
-                    },
-                    {
-                        "id": "node-1777513559192",
-                        "role": "AUXILIAR AVSEC - 02",
-                        "name": "1S FRANCONERE",
-                        "docs": "AVSEC_SJ_AUX_02",
-                        "forwardTo": "AVSEC_SJ_CH",
-                        "children": []
-                    },
-                    {
-                        "id": "node-1777513559340",
-                        "role": "AUXILIAR AVSEC - 03",
-                        "name": "SO DOMINGUES",
-                        "docs": "AVSEC_SJ_AUX_03",
-                        "forwardTo": "AVSEC_SJ_CH",
-                        "children": []
-                    },
-                    {
-                        "id": "node-1777513831803",
-                        "role": "AUXILIAR AVSEC - 04",
-                        "name": "AVSEC_SJ_AUX_04",
-                        "docs": "AVSEC_SJ_AUX_04",
-                        "forwardTo": "AVSEC_SJ_CH",
-                        "children": []
-                    }
-                ]
-            },
-            {
                 "id": "node-1777482106922",
                 "role": "COMUNICAÇÃO SOCIAL",
                 "name": "2S MAYSE",
@@ -207,6 +133,47 @@
                                         "name": "S2 ESDRAS",
                                         "docs": "",
                                         "forwardTo": "",
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "node-1777481787127",
+                                "role": "AVSEC",
+                                "name": "1º TEN GLAUDIO",
+                                "docs": "AVSEC_SJ_CH\n",
+                                "forwardTo": "*** COMANDANTE  ***\nDTCEASJ_CMT  (CAP GODOY)\n\n\n***** ***   CHEFIAS    *******\nAIS_SJ_CH    (1º TEN LUCIANO)\nASSIPACEA_SJ_CH   (CAP GODOY)\nAVSEC_SJ_CH   (1º TEN GLAUDIO)\nDTR_SJ_CH    (1º TEN LUCIANO)\nEMS1_SJ_CH    (1º TEN LUCIANO)\nINT_SJ_CH   (1º TEN GLAUDIO)\nSA_SJ_CH    (1º TEN GLAUDIO)\nSCS_SJ_CH    (CAP GODOY)\nSELE_SJ_CH    (1º TEN GLAUDIO)\nSELT_SJ_CH    (1º TEN GLAUDIO)\nSIATO_SJ_CH    (CAP GODOY)\nSITS_SJ_CH    (1º TEN GLAUDIO)\nSO_SJ_CHF    (1º TEN LUCIANO)\nST_SJ_CH    (1º TEN GLAUDIO)\nTWR_SJ_CH    (1º TEN LUCIANO)\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)",
+                                "children": [
+                                    {
+                                        "id": "node-1777513437464",
+                                        "role": "AUXILIAR AVSEC - 01",
+                                        "name": "SO MICHELY",
+                                        "docs": "AVSEC_SJ_AUX_01",
+                                        "forwardTo": "AVSEC_SJ_CH",
+                                        "children": []
+                                    },
+                                    {
+                                        "id": "node-1777513559192",
+                                        "role": "AUXILIAR AVSEC - 02",
+                                        "name": "1S FRANCONERE",
+                                        "docs": "AVSEC_SJ_AUX_02",
+                                        "forwardTo": "AVSEC_SJ_CH",
+                                        "children": []
+                                    },
+                                    {
+                                        "id": "node-1777513559340",
+                                        "role": "AUXILIAR AVSEC - 03",
+                                        "name": "SO DOMINGUES",
+                                        "docs": "AVSEC_SJ_AUX_03",
+                                        "forwardTo": "AVSEC_SJ_CH",
+                                        "children": []
+                                    },
+                                    {
+                                        "id": "node-1777513831803",
+                                        "role": "AUXILIAR AVSEC - 04",
+                                        "name": "AVSEC_SJ_AUX_04",
+                                        "docs": "AVSEC_SJ_AUX_04",
+                                        "forwardTo": "AVSEC_SJ_CH",
                                         "children": []
                                     }
                                 ]
@@ -711,6 +678,39 @@
                                 "docs": "DTR_SJ_ENC",
                                 "forwardTo": "***** ***   CHEFIAS    *******\nAIS_SJ_CH    (1º TEN LUCIANO)\nASSIPACEA_SJ_CH   (CAP GODOY)\nEMS1_SJ_CH    (1º TEN LUCIANO)\nSIATO_SJ_CH    (CAP GODOY)\nSO_SJ_CHF    (1º TEN LUCIANO)\nTWR_SJ_CH    (1º TEN LUCIANO)\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)",
                                 "children": []
+                            },
+                            {
+                                "id": "node-1777481406907",
+                                "role": "SIATO",
+                                "name": "1S BEATRIZ",
+                                "docs": "SIATO_SJ_ENC",
+                                "forwardTo": "*** COMANDANTE  ***\nSIATO_SJ_CH   (CAP GODOY)\n\n\n*** ENCARREGADOS ***\nAIS_SJ_ENC    (SO LEITE)\nASSIPACEA_SJ_ENC   (1S ÉRICA)\nDTCEA_SJ_ENC   (SO PEREIRA)\nEMS1_SJ_ENC   (SO FONTENELES)\nPAT_SUST_ELO_SJ_ENC   (SO PEREIRA)\nSCI_ELO_SJ_ENC   (2S KESSYA)\nSCS_SJ_ENC   (2S MAYSE)\nSEC_SA_SJ_ENC   (2S ALESSANDRA (SJ))\nSELE_SJ_ENC   (2S NOGUEIRA)\nSELT_SJ_ENC   (SO BECKMANN)\nSGSO_SJ_ENC   (1S ÉRICA)\nSIATO_SJ_ENC   (1S BEATRIZ)\nSO_SJ_ENC   (SO INGRID)\nSSUP_SJ_ENC   (2S MAYSE)\nSTI_SJ_ENC   (SO PEREIRA)\nST_SJ_ENC   (SO ALEX)\n\n\n*** AUXILIARES ***\nSIATO_SJ_AUX_01\nSIATO_SJ_AUX_02\nSIATO_SJ_AUX_03",
+                                "children": [
+                                    {
+                                        "id": "node-1777511705590",
+                                        "role": "AUXILIAR SIATO - 01",
+                                        "name": "S2 THOMAZ",
+                                        "docs": "SIATO_SJ_AUX_01",
+                                        "forwardTo": "SIATO_SJ_ENC",
+                                        "children": []
+                                    },
+                                    {
+                                        "id": "node-1779113841209",
+                                        "role": "AUXILIAR SIATO - 02",
+                                        "name": "2S GABRIELE",
+                                        "docs": "SIATO_SJ_AUX_02",
+                                        "forwardTo": "SIATO_SJ_ENC",
+                                        "children": []
+                                    },
+                                    {
+                                        "id": "node-1779113853784",
+                                        "role": "AUXILIAR SIATO - 03",
+                                        "name": "NOME DO MILITAR",
+                                        "docs": "SIATO_SJ_AUX_03",
+                                        "forwardTo": "SIATO_SJ_ENC",
+                                        "children": []
+                                    }
+                                ]
                             }
                         ]
                     }
