@@ -166,16 +166,16 @@ function update(source) {
         event.stopPropagation();
         if (!isViewerMode) {
             openEditPanel(d);
-        } else {
-            if (event.detail === 1) {
-                if (d.children || d._children) {
-                    if (d.children) { d._children = d.children; d.children = null; }
-                    else { d.children = d._children; d._children = null; }
-                    update(d);
-                } else {
-                    animateDocumentFlow(d);
-                }
+        }
+        
+        if (d.children || d._children) {
+            if (isViewerMode && event.detail === 1) {
+                if (d.children) { d._children = d.children; d.children = null; }
+                else { d.children = d._children; d._children = null; }
+                update(d);
             }
+        } else {
+            animateDocumentFlow(d);
         }
     });
 
