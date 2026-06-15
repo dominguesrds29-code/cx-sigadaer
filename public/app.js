@@ -495,6 +495,30 @@ function setupEventListeners() {
         const a = document.createElement('a'); a.href = dataStr; a.download = `${projects[activeProjectId].name}.json`; a.click();
     });
 
+    document.getElementById("btn-export-csv")?.addEventListener("click", () => {
+        const rows = [["Nome", "Caixas SIGADAER", "Encaminha Para"]];
+        function traverse(node) {
+            if (!node) return;
+            const name = (node.name || "").replace(/"/g, '""').trim();
+            const docs = (node.docs || "").replace(/"/g, '""').trim();
+            const forwardTo = (node.forwardTo || "").replace(/"/g, '""').trim();
+            rows.push([`"${name}"`, `"${docs}"`, `"${forwardTo}"`]);
+            const children = node.children || node._children;
+            if (children && children.length > 0) {
+                children.forEach(traverse);
+            }
+        }
+        traverse(treeData);
+        const csvContent = "\uFEFF" + rows.map(e => e.join(";")).join("\n");
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${projects[activeProjectId].name}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+    });
+
     document.getElementById("zoom-in")?.addEventListener("click", () => svg.transition().call(zoom.scaleBy, 1.4));
     document.getElementById("zoom-out")?.addEventListener("click", () => svg.transition().call(zoom.scaleBy, 0.7));
     document.getElementById("reset-view")?.addEventListener("click", () => {
