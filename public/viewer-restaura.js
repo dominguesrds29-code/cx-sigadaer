@@ -151,26 +151,10 @@ function update(source) {
         .on("mousemove", (event) => moveAnnotation(event))
         .on("mouseleave", hideAnnotation);
     
-    // Abrir painel de cópia com clique duplo (desktop) ou clique simples (mobile)
-    nodeEnter.on("dblclick", (event, d) => {
-        event.stopPropagation();
-        openCopyPanel(d);
-    });
-
+    // Abrir painel de cópia com clique simples
     nodeEnter.on("click", (event, d) => {
         event.stopPropagation();
-        // Se for mobile (touch), um clique abre o painel se já estiver expandido
-        if (event.detail === 1 && !d.children && !d._children) {
-            openCopyPanel(d);
-        }
-        
-        if (event.detail === 1) {
-            if (d.children || d._children) {
-                if (d.children) { d._children = d.children; d.children = null; }
-                else { d.children = d._children; d._children = null; }
-                update(d);
-            }
-        }
+        openCopyPanel(d);
     });
 
     nodeEnter.append("rect").attr("class", "node-rect").attr("width", nodeWidth).attr("height", nodeHeight).attr("rx", 16).attr("ry", 16);
@@ -178,7 +162,15 @@ function update(source) {
     nodeEnter.append("text").attr("class", "node-role").attr("x", nodeWidth / 2).attr("y", 45).attr("text-anchor", "middle").style("font-weight", "700").text(d => d.data.role);
     nodeEnter.append("text").attr("class", "node-name").attr("x", nodeWidth / 2).attr("y", 75).attr("text-anchor", "middle").text(d => d.data.name);
 
-    const toggle = nodeEnter.append("g").attr("class", "node-toggle").attr("transform", `translate(${nodeWidth / 2}, ${nodeHeight})`);
+    const toggle = nodeEnter.append("g").attr("class", "node-toggle").attr("transform", `translate(${nodeWidth / 2}, ${nodeHeight})`)
+        .on("click", (event, d) => {
+            event.stopPropagation();
+            if (d.children || d._children) {
+                if (d.children) { d._children = d.children; d.children = null; }
+                else { d.children = d._children; d._children = null; }
+                update(d);
+            }
+        });
     toggle.append("circle").attr("r", 10).attr("fill", "var(--restore-accent)");
     toggle.append("text").attr("class", "toggle-icon").attr("text-anchor", "middle").attr("dy", ".35em").style("fill", "white").style("font-size", "14px").style("font-weight", "bold");
 
