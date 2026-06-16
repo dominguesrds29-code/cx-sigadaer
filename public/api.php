@@ -33,7 +33,18 @@ switch ($action) {
         foreach ($files as $file) {
             $id = basename($file, '.json');
             $content = json_decode(file_get_contents($file), true);
-            if ($content) $projects[$id] = $content;
+            if ($content) {
+                // Auto-wrap se for formato flat para não quebrar o frontend
+                if (!isset($content['data'])) {
+                    $content = [
+                        'id' => $id,
+                        'name' => isset($content['name']) && $content['name'] !== 'Atual' ? $content['name'] : 'Restaurado ' . date('d/m/Y H:i', filemtime($file)),
+                        'data' => $content,
+                        'status' => 'public'
+                    ];
+                }
+                $projects[$id] = $content;
+            }
         }
         echo json_encode($projects);
         break;

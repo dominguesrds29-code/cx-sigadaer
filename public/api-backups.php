@@ -48,11 +48,44 @@ switch ($action) {
         if (file_exists($path) && pathinfo($path, PATHINFO_EXTENSION) === 'json') {
             $content = file_get_contents($path);
             $projectData = json_decode($content, true);
-            if ($projectData && isset($projectData['id'])) {
-                $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $projectData['id']);
-                $targetPath = 'data/' . $id . '.json';
+            
+            if ($projectData) {
+                // Se o JSON não possui a chave 'data' no topo, significa que é o formato flat (apenas o nó raiz da árvore)
+                if (!isset($projectData['data'])) {
+                    $parts = explode('_', $file);
+                    $derivedId = $parts[0];
+                    if (empty($derivedId)) {
+                        $derivedId = pathinfo($file, PATHINFO_FILENAME);
+                    }
+                    $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $derivedId);
+                    
+                    // Cria o nome do projeto usando a data de modificação do arquivo de backup
+                    $projectName = 'Restaurado ' . date('d/m/Y H:i', filemtime($path));
+                    
+                    $wrappedData = [
+                        'id' => $id,
+                        'name' => $projectName,
+                        'data' => $projectData,
+                        'status' => 'public'
+                    ];
+                    $contentToSave = json_encode($wrappedData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                } else {
+                    // Já possui a estrutura correta com a chave 'data' no topo
+                    $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $projectData['id']);
+                    if (!isset($projectData['status'])) {
+                        $projectData['status'] = 'public';
+                    }
+                    
+                    // Se o nome do projeto no backup for genérico como "Atual", podemos tentar deixá-lo mais descritivo
+                    if (isset($projectData['name']) && $projectData['name'] === 'Atual') {
+                        $projectData['name'] = 'Restaurado ' . date('d/m/Y H:i', filemtime($path));
+                    }
+                    
+                    $contentToSave = json_encode($projectData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                }
                 
-                if (file_put_contents($targetPath, $content) !== false) {
+                $targetPath = 'data/' . $id . '.json';
+                if (file_put_contents($targetPath, $contentToSave) !== false) {
                     echo json_encode(['status' => 'success', 'projectId' => $id]);
                 } else {
                     http_response_code(500);
@@ -60,7 +93,7 @@ switch ($action) {
                 }
             } else {
                 http_response_code(400);
-                echo json_encode(['error' => 'Backup inválido ou sem ID de projeto válido']);
+                echo json_encode(['error' => 'Backup inválido ou JSON corrompido']);
             }
         } else {
             http_response_code(404);
