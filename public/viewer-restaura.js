@@ -37,9 +37,51 @@ async function loadBackup(filename) {
         
         renderBackupList(allBackups); // Refresh list to show active item
         initChart();
+
+        // Habilita o botão de restauração
+        const restoreBtn = document.getElementById("btn-restore");
+        if (restoreBtn) {
+            restoreBtn.removeAttribute("disabled");
+            restoreBtn.style.cursor = "pointer";
+            restoreBtn.style.opacity = "1";
+        }
     } catch (e) {
         console.error("Erro ao carregar backup:", e);
         alert("Erro ao carregar o arquivo de backup.");
+    }
+}
+
+async function restoreBackup() {
+    if (!activeBackupFile) {
+        alert("Por favor, selecione um backup para restaurar.");
+        return;
+    }
+
+    if (!confirm(`Deseja realmente restaurar o backup "${activeBackupFile}"?\n\nIsso irá substituir o organograma atual correspondente no editor.`)) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`api-backups.php?action=restore&file=${encodeURIComponent(activeBackupFile)}`, {
+            method: 'POST'
+        });
+        const result = await response.json();
+        
+        if (result.status === 'success') {
+            // Define o projeto restaurado como o ativo no localStorage
+            localStorage.setItem('organograma_active_project', result.projectId);
+            
+            alert(`Backup restaurado com sucesso para o projeto "${result.projectId}"!`);
+            
+            if (confirm("Deseja ir para o módulo de administração para continuar editando?")) {
+                window.location.href = 'module-admin.html';
+            }
+        } else {
+            alert("Erro ao restaurar backup: " + (result.error || "Erro desconhecido"));
+        }
+    } catch (e) {
+        console.error("Erro ao restaurar backup:", e);
+        alert("Erro de comunicação ao restaurar o backup.");
     }
 }
 
@@ -247,6 +289,7 @@ function setupEventListeners() {
     document.getElementById("search-backup")?.addEventListener("input", searchBackups);
     document.getElementById("filter-forward")?.addEventListener("change", searchBackups);
     document.getElementById("close-copy-panel")?.addEventListener("click", closeCopyPanel);
+    document.getElementById("btn-restore")?.addEventListener("click", restoreBackup);
 
     // Fechar painel ao clicar fora
     document.addEventListener("mousedown", (e) => {

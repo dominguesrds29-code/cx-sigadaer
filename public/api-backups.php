@@ -40,6 +40,35 @@ switch ($action) {
         }
         break;
 
+    case 'restore':
+        $file = $_GET['file'] ?? '';
+        $file = basename($file);
+        $path = $backupDir . $file;
+        
+        if (file_exists($path) && pathinfo($path, PATHINFO_EXTENSION) === 'json') {
+            $content = file_get_contents($path);
+            $projectData = json_decode($content, true);
+            if ($projectData && isset($projectData['id'])) {
+                $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $projectData['id']);
+                $targetPath = 'data/' . $id . '.json';
+                
+                if (file_put_contents($targetPath, $content) !== false) {
+                    echo json_encode(['status' => 'success', 'projectId' => $id]);
+                } else {
+                    http_response_code(500);
+                    echo json_encode(['error' => 'Não foi possível escrever o arquivo de destino']);
+                }
+            } else {
+                http_response_code(400);
+                echo json_encode(['error' => 'Backup inválido ou sem ID de projeto válido']);
+            }
+        } else {
+            http_response_code(404);
+            echo json_encode(['error' => 'Arquivo de backup não encontrado']);
+        }
+        break;
+
+
     case 'search':
         $query = $_GET['q'] ?? '';
         $onlyWithForward = ($_GET['forward'] ?? '0') === '1';
