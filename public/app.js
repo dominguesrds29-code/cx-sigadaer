@@ -207,6 +207,66 @@ function update(source) {
     nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
 }
 
+// --- Helper Functions to search directly in raw treeData ---
+function findNodeInRaw(node, id) {
+    if (node.id === id) return node;
+    if (node.children) {
+        for (const child of node.children) {
+            const found = findNodeInRaw(child, id);
+            if (found) return found;
+        }
+    }
+    return null;
+}
+
+function findParentInRaw(node, id) {
+    if (!node.children) return null;
+    for (let i = 0; i < node.children.length; i++) {
+        if (node.children[i].id === id) return node;
+        const found = findParentInRaw(node.children[i], id);
+        if (found) return found;
+    }
+    return null;
+}
+
+function populateParentSelect(currentNode) {
+    const select = document.getElementById("edit-parent-select");
+    if (!select) return;
+    select.innerHTML = "";
+    
+    if (currentNode.data.id === "root") {
+        const option = document.createElement("option");
+        option.value = "";
+        option.text = "Raiz (não pode ser movida)";
+        option.disabled = true;
+        select.appendChild(option);
+        select.disabled = true;
+        return;
+    }
+    
+    select.disabled = false;
+    
+    const currentParent = currentNode.parent;
+    const defaultOption = document.createElement("option");
+    defaultOption.value = currentParent.data.id;
+    defaultOption.text = `Manter atual: ${currentParent.data.role || 'Sem Cargo'} - ${currentParent.data.name || 'Sem Nome'}`;
+    select.appendChild(defaultOption);
+    
+    const descendantsIds = currentNode.descendants().map(n => n.data.id);
+    const allNodes = root.descendants();
+    
+    allNodes.forEach(n => {
+        if (descendantsIds.includes(n.data.id) || n.data.id === currentParent.data.id) {
+            return;
+        }
+        
+        const option = document.createElement("option");
+        option.value = n.data.id;
+        option.text = `${n.data.role || 'Sem Cargo'} - ${n.data.name || 'Sem Nome'}`;
+        select.appendChild(option);
+    });
+}
+
 function openEditPanel(d) {
     if (isViewerMode) return;
     selectedNode = d;
@@ -215,6 +275,7 @@ function openEditPanel(d) {
     document.getElementById("edit-name").value = d.data.name;
     document.getElementById("edit-docs").value = d.data.docs || "";
     document.getElementById("edit-forward").value = d.data.forwardTo || "";
+    populateParentSelect(d);
 }
 
 function closeEditPanel() { document.getElementById("edit-panel").classList.remove("active"); selectedNode = null; }
@@ -343,10 +404,39 @@ function setupEventListeners() {
         // Atualiza localmente
         Object.assign(selectedNode.data, nodeData);
         
-        // Salva apenas este nó no servidor
-        await updateNodeOnServer(selectedNode.data.id, nodeData);
+        const newParentId = document.getElementById("edit-parent-select")?.value;
+        const currentParentId = selectedNode.parent ? selectedNode.parent.data.id : null;
         
-        update(selectedNode); 
+        if (newParentId && currentParentId && newParentId !== currentParentId) {
+            // Reorganiza na árvore bruta (treeData)
+            const rawCurrentParent = findNodeInRaw(treeData, currentParentId);
+            const rawNewParent = findNodeInRaw(treeData, newParentId);
+            const rawNode = findNodeInRaw(treeData, selectedNode.data.id);
+            
+            if (rawCurrentParent && rawNewParent && rawNode) {
+                // Remove do pai atual
+                if (rawCurrentParent.children) {
+                    const index = rawCurrentParent.children.findIndex(c => c.id === selectedNode.data.id);
+                    if (index !== -1) {
+                        rawCurrentParent.children.splice(index, 1);
+                    }
+                }
+                
+                // Adiciona ao novo pai
+                if (!rawNewParent.children) rawNewParent.children = [];
+                rawNewParent.children.push(rawNode);
+                
+                // Reconstrói a hierarquia e salva no servidor
+                root = d3.hierarchy(treeData);
+                await saveAll();
+                initChart();
+            }
+        } else {
+            // Salva apenas este nó no servidor se não houve mudança de hierarquia
+            await updateNodeOnServer(selectedNode.data.id, nodeData);
+            update(selectedNode);
+        }
+        
         closeEditPanel();
     });
 
