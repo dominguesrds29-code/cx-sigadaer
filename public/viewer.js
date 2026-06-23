@@ -106,7 +106,7 @@ async function checkProjectLock(id) {
 
         if (isProjectReadonly) {
             if (warning) {
-                warning.style.display = "block";
+                warning.style.display = "none";
                 warning.innerHTML = '<i data-lucide="eye"></i> Este organograma está em modo de apenas leitura (definido pelo Administrador).';
                 lucide.createIcons();
             }
